@@ -1,0 +1,12 @@
+pelican==3.6.3
+Pygments
+feedgenerator
+feedparser
+typogrify
+Markdown
+PyYAML
+pelican-microdata>=0.2
+pelican-social>=0.1.1
+awesome-slugify
+python-frontmatter
+babel

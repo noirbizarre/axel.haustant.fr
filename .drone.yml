@@ -1,0 +1,20 @@
+cache:
+  mount:
+    - py-user-base
+
+build:
+    image: apihackers/pelican
+    commands:
+      - export PYTHONUSERBASE=$DRONE_DIR/py-user-base
+      - pip3 install --user -r requirements.pip
+      - pelican -v -o output -s publishconf.py
+
+deploy:
+  rsync:
+    user: static
+    host: axel.haustant.fr
+    port: 22
+    source: output/
+    target: /srv/axel.haustant.fr/
+    delete: true
+    recursive: true

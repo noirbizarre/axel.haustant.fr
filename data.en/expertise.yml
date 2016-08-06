@@ -1,0 +1,20 @@
+---
+-
+  name: Development
+  lines:
+  - Définition d’architectures applicatives
+  - Python Development
+  - JavaScript development
+  - Industrialisation
+-
+  name: Processus et outils de développement
+  lines:
+  - Gestion de configuration
+  - Déploiement
+-
+  name: Méthodologie
+  lines:
+  - Agilité (Scrum, XP, Kanban, ...)
+  - DevOps
+  - Test Driven Development
+  - Intégration continue, livraison continue

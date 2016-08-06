@@ -1,0 +1,43 @@
+---
+-
+  name: Python
+  level: 95
+-
+  name: Javascript
+  level: 90
+-
+  name: Design
+  level: 75
+-
+  name: Agilité
+  level: 85
+-
+  name: DevOps
+  level: 85
+# -
+# Systèmes d'exploitation
+#
+# Unix/Linux (Debian, Ubuntu, RHEL, Centos, OpenWRT...), Windows, MacOSX,
+# Langages de programmation
+#
+# Java/J2EE, Python, JavaScript, HTML/HTML5, CSS, Ruby, Flex/ActionScript3, bash, SQL et dérivés (PLSQL, PLpgSQL,...), XML
+# Frameworks
+#
+# Spring (et ses composants), Hibernate, Jersey, Django/GeoDjango,
+# Ember.js, Backbone.js, jQuery, Swiz, PureMVC, Twitter Bootstrap, Celery
+# Base de données
+#
+# PostgreSQL/PostGIS, MySQL, Oracle/Oracle Spatial, MongoDB
+# Serveurs
+#
+# nginx, cherokee, apache httpd, lighttpd, gevent, tornado, uwsgi, gunicorn,
+# tomcat, jetty, JBoss, Jonas, RabbitMQ, SOLR
+# Tests
+#
+# JUnit, Unitils, DBUnit, unittest, nose, jasmine, QUnit, mock, Mockito, Selenium
+# Autres outils
+#
+# Capistrano, Fabric, Sphinx, Jenkins, Sonar, Git, Mercurial, Subversion, Maven, Ant, rake, PhantomJS, GDAL
+# Cloud
+#
+# Amazon Web Services (EC2, S3, …), Heroku
