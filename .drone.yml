@@ -7,8 +7,8 @@ build:
     commands:
       - export PYTHONUSERBASE=$DRONE_DIR/py-user-base
       - pip3 install --user -r requirements.pip
-      - inv i18nc build
-      # - pelican -v -o output -s publishconf.py
+      - pybabel compile -d translations
+      - pelican -v -o output -s publishconf.py
 
 deploy:
   rsync:
