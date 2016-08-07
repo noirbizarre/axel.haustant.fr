@@ -6,9 +6,9 @@ build:
     image: apihackers/pelican
     commands:
       - export PYTHONUSERBASE=$DRONE_DIR/py-user-base
-      - pip3 install --user -r requirements.pip
-      - pybabel compile -d translations
-      - pelican -v -o output -s publishconf.py
+      - export PATH=$PYTHONUSERBASE/bin:$PATH
+      - pip install --user -r requirements.pip
+      - inv i18nc build
 
 deploy:
   rsync:

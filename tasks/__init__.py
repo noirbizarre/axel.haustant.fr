@@ -9,10 +9,7 @@ import sys
 from datetime import datetime
 
 from invoke import run as raw_run, task
-
-from livereload import Server
 from pelican import Pelican
-
 from pelican.settings import read_settings
 from jinja2 import Environment, FileSystemLoader
 
@@ -26,7 +23,7 @@ CONF_FILE = os.path.join(ROOT, 'pelicanconf.py')
 # Port for `serve`
 PORT = 5000
 
-RSYNC_TARGET = 'dedibox:www/axel.haustant.fr/'
+RSYNC_TARGET = 'ah-core-01:/srv/axel.haustant.fr/'
 
 
 class objdict(dict):
@@ -117,6 +114,7 @@ def compile():
 @task
 def watch(ctx):
     '''Serve the blog and watch changes'''
+    from livereload import Server
 
     settings = get_settings()
     compile()
