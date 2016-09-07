@@ -14,7 +14,7 @@ j'interviens sur l'ensemble des aspects de son cycle de vie, entre autres:
 - administration des infrastructures data.gouv.fr et etalab.gouv.fr
 
 Au delà des aspects et choix techniques innovant,
-Data.gouv.fr c'est aussi des outils et méthodes innédit au sein de l'administration:
+Data.gouv.fr c'est aussi des outils et méthodes inédits au sein de l'administration:
 
 - l'agilité nous permet des réactifs et de livrer en un temps records
 - DevOps nous permet d'opérer nous même la plateforme

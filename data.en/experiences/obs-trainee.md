@@ -3,7 +3,7 @@ company: Orange Business Services/IT&Labs
 where: Lyon
 from: 2007-12
 to: 2008-06
-role: Trainee
+role: Stagiaire
 ---
 Projet de fin d'études sur le thème "Les frameworks Web 2.0"
 Au cours de ce projet j'ai étudié les aspects intéressants du "Web 2.0" pour l'entreprise et défini un périmètre d'application pour les projets et les collaborateurs IT&Labs.
