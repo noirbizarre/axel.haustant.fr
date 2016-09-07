@@ -2,9 +2,9 @@
 company: Urbandive
 from: 2011-07
 to: 2012-02
-role: Consultant J2EE GeoData
+role: J2EE and GeoData expert
 ---
-Au sein l'équipe GeoData d'UrbanDive (filiale de Mappy), j’ai eu à intervenir sur les sujets suivants:
+Whitin the GeoData team (a Mappy subsidiary company), I had to worko on the follwing topics:
 
 - Amélioration de l'usine logicielle (Nexus / Jenkins / Maven / shell)
 - Création de batchs d'intégration des POI de partenaires (Java / MongoDB)
