@@ -62,7 +62,7 @@ PLUGINS = [
     'sitemap',
     'frontmark',
     'data',
-    'cv2pdf',
+    # 'cv2pdf',
     'i18n_subsites',
 ]
 
