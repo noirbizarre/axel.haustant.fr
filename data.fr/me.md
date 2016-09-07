@@ -2,7 +2,7 @@
 first_name: Axel
 last_name: Haustant
 tagline: Techlead, Développeur full stack
-avatar: /images/me.png
+avatar: /images/me1.png
 
 email: axel@haustant.fr
 phone:

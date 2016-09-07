@@ -2,19 +2,19 @@
 -
   name: Development
   lines:
-  - Définition d’architectures applicatives
+  - Defining application architectures
   - Python Development
   - JavaScript development
-  - Industrialisation
+  - Industrialization (, deployment...)
 -
-  name: Processus et outils de développement
+  name: Processes et development tools
   lines:
-  - Gestion de configuration
-  - Déploiement
+  - Configuration management
+  - Deployment
 -
-  name: Méthodologie
+  name: Methodology
   lines:
-  - Agilité (Scrum, XP, Kanban, ...)
+  - Agility (Scrum, XP, Kanban, ...)
   - DevOps
   - Test Driven Development
-  - Intégration continue, livraison continue
+  - Continuous integration, continuous delivery

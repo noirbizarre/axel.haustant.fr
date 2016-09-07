@@ -2,7 +2,7 @@
 first_name: Axel
 last_name: Haustant
 tagline: Techlead, Full stack developer
-avatar: /images/me.png
+avatar: /images/me1.png
 
 email: axel@haustant.fr
 phone:
@@ -57,12 +57,12 @@ languages:
 
 ---
 
-Développeur passionné, mon métier est d'apprendre votre métier pour le mettre en valeur.
+Passionate developer, my job is to learn yours to showcase it.
 
-Réalisation de sites, automatisation, référencement, mailing, scripting,
-coaching méthodologique, agilité, devops, intégration continue, formation...
-Autant de domaines dans lesquels je prends plaisir à offrir mes compétences
-pour améliorer vos processus et réduire vos coûts.
+Making websites, automation, optimization, mailing, scripting,
+methodological coaching, agility, DevOps, continuous integration, training ...
+All areas in which I delight to offer my skills
+to improve your processes and reduce costs.
 
-L'informatique ne doit jamais être une barrière ou une contrainte dans votre métier.
-Aussi je m'efforce de fournir des solutions adaptées à vos besoins.
+Computers should never be a barrier or constraint in your job.
+I try to provide solutions tailored to your needs.

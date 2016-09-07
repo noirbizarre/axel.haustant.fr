@@ -124,7 +124,12 @@ def watch(ctx):
     server.watch('theme', compile)
     server.watch(settings.I18N_GETTEXT_LOCALEDIR, compile)
 
-    for root in getattr(settings, 'DATA_PATHS', []):
+    data_paths = getattr(settings, 'DATA_PATHS', [])
+    subsites = getattr(settings, 'I18N_SUBSITES', {})
+    for subsite in subsites.values():
+        data_paths.extend(subsite.get('DATA_PATHS', []))
+
+    for root in data_paths:
         for data in getattr(settings, 'DATA', []):
             path = os.path.join(root, data)
             if os.path.exists(path):
