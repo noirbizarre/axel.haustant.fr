@@ -8,6 +8,9 @@ build:
       - export PYTHONUSERBASE=$DRONE_DIR/py-user-base
       - export PATH=$PYTHONUSERBASE/bin:$PATH
       - pip install --user -r requirements.pip
+      # - ls /sbin/ | grep ld
+      # - find /usr/lib -name "*cairo*" -print
+      # - weasyprint --help
       - inv i18nc build
 
 deploy:

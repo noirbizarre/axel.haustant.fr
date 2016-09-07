@@ -75,6 +75,7 @@ DATA = [
     'education.yml',
     'experiences',
     'expertise.yml',
+    'projects.md',
     'skills.yml',
     'jsonld.json',
 ]

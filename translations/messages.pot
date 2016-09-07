@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-04 09:21+0200\n"
+"POT-Creation-Date: 2016-09-07 08:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,19 +45,19 @@ msgstr ""
 msgid "Area of expertise"
 msgstr ""
 
-#: theme/templates/index.html:135
+#: theme/templates/index.html:142
 msgid "Experiences"
 msgstr ""
 
-#: theme/templates/index.html:145
+#: theme/templates/index.html:152
 msgid "Present"
 msgstr ""
 
-#: theme/templates/index.html:162
+#: theme/templates/index.html:169
 msgid "Projects"
 msgstr ""
 
-#: theme/templates/index.html:189
+#: theme/templates/index.html:186
 msgid "Skills &amp; Proficiency"
 msgstr ""
 
