@@ -1,20 +1,91 @@
 ---
 -
-  name: Python
-  level: 95
+  name: Programmation
+  skills:
+  -
+    name: Python
+    level: 95
+  -
+    name: Javascript
+    level: 90
+  -
+    name: HTML/CSS
+    level: 85
+  -
+    name: Java/J2EE
+    level: 75
+  -
+    name: php
+    level: 75
+  -
+    name: SQL (PLSQL, PLpgSQL..)
+    level: 75
 -
-  name: Javascript
-  level: 90
+  name: Methodology
+  skills:
+  -
+    name: Agility
+    level: 90
+  -
+    name: DevOps
+    level: 90
+  -
+    name: Lean
+    level: 80
+  -
+    name: Test driven development
+    level: 90
+  -
+    name: Continuous Delivery
+    level: 90
 -
-  name: Design
-  level: 75
+  name: Databases/Search
+  skills:
+  -
+    name: MongoDB
+    level: 90
+  -
+    name: PostgreSQL/PostGIS
+    level: 85
+  -
+    name: MySQL
+    level: 70
+  -
+    name: Redis
+    level: 75
+  -
+    name: ElasticSearch
+    level: 90
+  -
+    name: SOLR
+    level: 70
 -
-  name: Agilité
-  level: 85
+  name: System administration
+  skills:
+  -
+    name: Unix/Linux
+    level: 95
+  -
+    name: Bash (Scripting)
+    level: 85
+  -
+    name: Ansible
+    level: 90
+  -
+    name: Amazon Web Services
+    level: 80
+  -
+    name: Docker (and ecosystem)
+    level: 95
 -
-  name: DevOps
-  level: 85
-# -
+  name: Misc. (tools)
+  skills:
+  -
+    name: Jenkins
+    level: 90
+  -
+    name: git
+    level: 95
 # Systèmes d'exploitation
 #
 # Unix/Linux (Debian, Ubuntu, RHEL, Centos, OpenWRT...), Windows, MacOSX,
