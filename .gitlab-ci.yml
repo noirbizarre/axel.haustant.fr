@@ -5,14 +5,8 @@ stages:
 build:
   stage: build
   image: apihackers/pelican
-  cache:
-    key: python-$CI_BUILD_REF_NAME
-    paths:
-      - venv/
   script:
-    - python3 -m venv venv
-    - source venv/bin/activate
-    - pip install -r requirements.pip || pip install -r requirements.pip
+    - pip3 install -r requirements.pip || pip3 install -r requirements.pip
     - inv i18nc build
   artifacts:
      name: output
