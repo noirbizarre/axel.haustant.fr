@@ -25,6 +25,6 @@ deploy:
     - chmod 600 ~/.ssh/id_rsa
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - rsync -avz --delete output/ static@axel.haustant.fr:/src/axel.haustant.fr/
+    - rsync -avz --delete output/ static@axel.haustant.fr:/srv/axel.haustant.fr/
   only:
     - master
