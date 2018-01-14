@@ -4,7 +4,7 @@ where: Paris
 from: 2013-08
 role: Teachlead
 ---
-In charge of the site [Data.gouv.fr] (https://www.data.gouv.fr),
+In charge of the site [Data.gouv.fr](https://www.data.gouv.fr),
 the french open data platform,
 I stand on all aspects of its life cycle, including:
 

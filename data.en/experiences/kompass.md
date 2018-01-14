@@ -3,11 +3,11 @@ company: Kompass
 where: Courbevoie
 from: 2010-08
 to: 2011-04
-role: Consultant en intégration continue
+role: Continuous integration expert
 ---
-Mission de modernisation des outils et méthodes comprenant:
+Processes and tooling modernization mission, including:
 
-- Initialisation des méthodes agiles (Scrum / XP)
-- Migration de Subversion vers Git
-- Mise en place d'une plateforme d'intégration continue (Maven / Jenkins / Nexus)
-- Maintenance et évolutions diverses du site web Kompass (Oracle Portal / EJB2)
+- Agile methodologies bootstrap (Scrum / XP)
+- Subversion to Git migration
+- Continuous integration platform setup (Maven / Jenkins / Nexus)
+- Miscellaneous improvements on the Kompass web site (Oracle Portal / EJB2)

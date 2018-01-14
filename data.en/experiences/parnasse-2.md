@@ -5,7 +5,12 @@ from: 2009-07
 to: 2010-07
 role: Techlead J2EE
 ---
-Réalisation d’un CRM sur mesure pour Parnasse en méthodologie Agile/Scrum:
+Custom CRM implementation for Parnasse using Scrum methodology:
+
+- Quality and technical processes management and improvements
+- Software factory implementation (Nexus / Jenkins / Maven / Sonar)
+- Coding guidelines realisation
+
 
 - Gestion et amélioration des processus technique et qualité
 - Mise en place d’une usine logicielle (Maven / Hudson / Sonar / Nexus)
