@@ -7,8 +7,8 @@ Markdown
 PyYAML
 pelican-microdata>=0.2
 pelican-social>=0.1.1
+pelican-frontmark
 awesome-slugify
-python-frontmatter
 babel
 invoke
-weasyprint
+# weasyprint

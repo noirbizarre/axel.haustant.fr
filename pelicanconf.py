@@ -102,7 +102,9 @@ SITEMAP = {
 
 
 # Jinja Configuration
-JINJA_EXTENSIONS = ['jinja2.ext.i18n']
+JINJA_ENVIRONMENT = {
+    'extensions': ['jinja2.ext.i18n']
+}
 I18N_GETTEXT_LOCALEDIR = 'translations'
 I18N_TEMPLATES_LANG = 'en'
 I18N_GETTEXT_NEWSTYLE = True
