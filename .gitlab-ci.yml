@@ -1,0 +1,36 @@
+stages:
+- build
+- deploy
+
+build:
+  stage: build
+  image: apihackers/pelican
+  cache:
+    key: python-$CI_BUILD_REF_NAME
+    paths:
+      - venv/
+  script:
+    - python3 -m venv venv
+    - source venv/bin/activate
+    - pip install -r requirements.pip || pip install -r requirements.pip
+    - inv i18nc build
+  artifacts:
+     name: output
+     paths:
+     - output
+
+deploy:
+  stage: deploy
+  image: apihackers/rsync
+  environment:
+    name: production
+    url: https://axel.haustant.fr
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo -e "$DEPLOY_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avz --delete output/ static@axel.haustant.fr:/src/axel.haustant.fr/
+  only:
+    - master
