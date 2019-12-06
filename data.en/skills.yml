@@ -11,6 +11,9 @@
   -
     name: HTML/CSS
     level: 85
+  - 
+    name: Golang
+    level: 75
   -
     name: Java/J2EE
     level: 75

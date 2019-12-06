@@ -4,7 +4,7 @@ last_name: Haustant
 tagline: Techlead, Full stack developer
 avatar: /images/me1.png
 
-email: axel@haustant.fr
+email: axel@apihackers.com
 phone:
   display: +33 (0)7 81 14 97 07
   number: +33781149707
@@ -36,11 +36,11 @@ social:
     icon: linkedin
     link: http://fr.linkedin.com/in/axelhaustant
     display: axelhaustant
-  -
-    name: Viadeo
-    icon: viadeo
-    link: http://www.viadeo.com/fr/profile/axel.haustant
-    display: axel.haustant
+  # -
+  #   name: Viadeo
+  #   icon: viadeo
+  #   link: http://www.viadeo.com/fr/profile/axel.haustant
+  #   display: axel.haustant
 
 
 languages:
