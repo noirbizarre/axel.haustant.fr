@@ -4,7 +4,7 @@ stages:
 
 build:
   stage: build
-  image: apihackers/pelican
+  image: apihackers/pelican:3.7.1
   script:
     - pip3 install -r requirements.pip || pip3 install -r requirements.pip
     - inv i18nc build

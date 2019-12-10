@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, unicode_literals
 
+import collections
+import json
 import logging
 import os
 import yaml
-import json
 
 from blinker import signal
 
@@ -29,6 +30,18 @@ data_generator_context = signal('data_generator_context')
 SUPPORTED_FORMATS = 'json yaml yml'.split()
 
 
+def dict_representer(dumper, data):
+    return dumper.represent_dict(data.iteritems())
+
+
+def dict_constructor(loader, node):
+    return collections.OrderedDict(loader.construct_pairs(node))
+
+
+yaml.add_representer(collections.OrderedDict, dict_representer)
+yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constructor)
+
+
 @python_2_unicode_compatible
 class Data(object):
     '''
@@ -50,7 +63,7 @@ class Data(object):
             settings = copy.deepcopy(DEFAULT_CONFIG)
 
         self.settings = settings
-        self.content = content
+        self._content = content
         if context is None:
             context = {}
         self._context = context
@@ -148,6 +161,13 @@ class Data(object):
     def __str__(self):
         return self.source_path or repr(self)
 
+    # def __getattr__(self, name):
+
+    @property
+    def content(self):
+        return self._content
+
+
     def get_relative_source_path(self, source_path=None):
         """Return the relative path (from the content path) to the given
         source_path.
@@ -189,7 +209,7 @@ class DataGenerator(CachingGenerator):
         paths = self.settings.setdefault('DATA_PATHS', [])
         paths = [os.path.join(p, name) for p in paths]
         extensions = SUPPORTED_FORMATS + list(self.readers.extensions)
-        return any(map(os.path.isdir,paths)) or any(name.endswith(ext) for ext in extensions)
+        return any(map(os.path.isdir, paths)) or any(name.endswith(ext) for ext in extensions)
 
     def generate_context(self):
         for name in self.settings['DATA']:
