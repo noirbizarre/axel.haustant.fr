@@ -1,5 +1,9 @@
 ---
 opensource:
+  - 
+    name: udata (and its plugins)
+    url: https://github.com/opendatateam/udata
+    description: A customisable opendata portal
   -
     name: Flask-RESTPlus
     url: https://github.com/noirbizarre/flask-restplus
@@ -9,9 +13,9 @@ opensource:
     url: https://github.com/noirbizarre/flask-fs
     description: Simple and easy file storages for Flask
   -
-    name: Django.js
-    url: https://github.com/noirbizarre/django.js
-    description: Javascript tools for Django
+    name: Gonja
+    url: https://github.com/noirbizarre/gonja
+    description: A Jinja2 implementation in Go
 
 ---
 
