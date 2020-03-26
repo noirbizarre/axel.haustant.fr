@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
-
 import json
 import os
 
@@ -10,6 +8,7 @@ from dateutil.parser import parse
 AUTHOR = 'Axel Haustant'
 SITENAME = 'Axel Haustant'
 SITEURL = 'https://axel.haustant.fr'
+CONTACT_EMAIL = 'axel-[at]-haustant.fr'
 
 TIMEZONE = 'Europe/Paris'
 
@@ -22,8 +21,6 @@ OUTPUT_PATH = os.path.join(PATH, 'output')
 ARTICLE_PATHS = [
     # 'articles',
 ]
-
-CONTACT_EMAIL = 'axel-[at]-haustant.fr'
 
 # PAGE_PATHS = [
 #     'pages',
@@ -54,8 +51,8 @@ DEFAULT_PAGINATION = 10
 
 
 PLUGIN_PATHS = [
-    # 'plugins',
-    'local_plugins',
+    'plugins/local',
+    'plugins/official',
 ]
 
 PLUGINS = [
