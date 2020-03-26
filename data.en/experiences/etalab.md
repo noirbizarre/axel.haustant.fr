@@ -2,6 +2,7 @@
 company: Etalab
 where: Paris
 from: 2013-08
+to: 2019-10
 role: Teachlead
 ---
 In charge of the site [Data.gouv.fr](https://www.data.gouv.fr),
