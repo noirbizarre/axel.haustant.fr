@@ -50,10 +50,10 @@ DEFAULT_PAGINATION = 10
 # RELATIVE_URLS = True
 
 
-PLUGIN_PATHS = [
-    'plugins/local',
-    'plugins/official',
-]
+# PLUGIN_PATHS = [
+#     'plugins/local',
+#     'plugins/official',
+# ]
 
 PLUGINS = [
     'sitemap',

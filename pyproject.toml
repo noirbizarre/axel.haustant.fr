@@ -1,0 +1,67 @@
+[project]
+# PEP 621 project metadata
+# See https://www.python.org/dev/peps/pep-0621/
+authors = [
+    {name = "Axel H.", email = "noirbizarre@gmail.com"},
+]
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "poethepoet",
+    "Babel<3.0.0,>=2.9.1",
+    "Pygments<3.0.0,>=2.10.0",
+    # "invoke<2.0.0,>=1.6.0",
+    "pelican<5.0.0,>=4.7.1",
+    "pelican-data<1.0.0,>=0.2.0",
+    "pelican-frontmark<2.0.0,>=1.2.1",
+    "pelican-microdata<1.0.0,>=0.3.0",
+    "pelican-social<1.0.0,>=0.2.0",
+    "typogrify<3.0.0,>=2.0.7",
+    "unicode-slugify<1.0.0,>=0.1.5",
+    "pelican-sitemap<2.0.0,>=1.0.2",
+    # "orbelican>=1.0.0",
+    "pelican-i18n-subsites>=0.9.0",
+]
+name = "axel.haustant.fr"
+version = "0.1.0"
+description = "My personal resume"
+
+[project.urls]
+
+[dependency-groups]
+dev = [
+    "livereload<3.0.0,>=2.6.3",
+]
+
+[tool.poe]
+executor.type = "uv"
+
+[tool.poe.tasks]
+i18n.help = "Extract translatable strings"
+i18n.sequence = [
+    'pybabel extract -F babel.cfg -o translations/messages.pot .',
+    'pybabel update -i translations/messages.pot -d translations -l fr',
+]
+i18n.default_item_type = "cmd"
+
+i18nc.help = "Compile translations"
+i18nc.cmd = 'pybabel compile -d translations'
+
+build.help = "Build local version of site"
+build.cmd = 'pelican -s publishconf.py'
+#
+# watch.help = "Serve the blog and watch changes"
+# watch.call = "tt:watch"
+
+# publish.help = "Publish using rsync"
+# run('rsync -avz output/ {0}'.format(RSYNC_TARGET))
+
+#
+# [tool.pdm.build]
+# includes = []
+#
+# [build-system]
+# requires = ["pdm-pep517>=1.0.0"]
+# build-backend = "pdm.pep517.api"
+#
+#
+#
