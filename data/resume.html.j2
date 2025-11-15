@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>{{ data.me.full_name }}'s Resume</title>
+    <link rel="stylesheet" type="text/css" href="/style/web.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="intro">
+        <div class="profile">
+          <div class="photo">
+            <img src="{{ data.me.avatar or '/images/me1.png' }}" alt="{{ data.me.full_name }}" />
+          </div>
+          <div class="bio">
+            <h1 class="name">{{ data.me.full_name }}</h1>
+            {% if data.me.tagline %}<p class="profession">{{ data.me.tagline }}</p>{% endif %}
+          </div>
+        </div>
+        <div class="intro-section about">
+          <h1 class="title">{{ data.labels.get('Career Profile', 'About me') }}</h1>
+          {% if data.me.content %}
+            <div class="paragraph">
+              {# Simple markdown paragraph split #}
+              {{ data.me.html | safe }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="intro-section contact">
+          <h1 class="title">{{ data.labels.get('Me', 'Me') }}</h1>
+          {% if data.me.phone and data.me.phone.display %}
+          <div class="info-section"><span>{{ data.me.phone.display }}</span></div>
+          {% endif %}
+          {% if data.me.email %}
+          <div class="info-section"><span>{{ data.me.email }}</span></div>
+          {% endif %}
+          {% for site in data.me.websites %}
+          <div class="info-section link">
+            <a target="_blank" rel="author" href="{{ site.link }}">{{ site.name }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="intro-section follow">
+          <h1 class="title">{{ data.labels.get('Area of expertise', 'Follow') }}</h1>
+          {% for sn in data.me.social %}
+          <div class="info-section link">
+            <a target="_blank" rel="author" href="{{ sn.link }}">{{ sn.display or sn.name }}</a>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="intro-section languages">
+          <h1 class="title">{{ data.labels.get('Languages', 'Languages') }}</h1>
+          <ul>
+            {% for l in data.me.languages %}
+              <li>{{ l.name }}{% if l.level %} – {{ l.level }}{% endif %}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% if data.me.timeline %}
+        <div class="intro-section timeline">
+          <h1 class="title">{{ data.labels.get('Timeline','Timeline') }}</h1>
+          <ul>
+            {% for ev in data.me.timeline %}
+              <li><strong>{{ ev.date }}</strong> {{ ev.details }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if data.me.skills %}
+        <div class="intro-section rated-skills">
+          <h1 class="title">{{ data.labels.get('Skills','Skills') }}</h1>
+          <ul class="pg-list">
+            {% for s in data.me.skills %}
+            <li>
+              <span>{{ s.name }}</span>
+              <div class="sb-skeleton"><div class="skillbar" style="--pgbar-length: {{ s.rate }}%"></div></div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      <div class="detail">
+        <div class="detail-section experiences">
+          <div class="detail-title"><span>{{ data.labels.get('Experiences', 'Experiences') }}</span></div>
+          <div class="detail-content">
+            {% for exp in data.experiences %}
+            <div class="timeline-block">
+              <h1>{{ exp.company }}{% if exp.role %} – {{ exp.role }}{% endif %}</h1>
+              <p>{% if exp.where %}{{ exp.where }} · {% endif %}{% if exp.start %}{{ exp.start.strftime('%Y-%m') }}{% endif %} – {% if exp.end %}{{ exp.end.strftime('%Y-%m') }}{% else %}{{ data.labels.get('Present','Present') }}{% endif %}</p>
+              {% if exp.html %}
+              <div class="exp-content">{{ exp.html | safe }}</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="detail-section edu">
+          <div class="detail-title"><span>{{ data.labels.get('Education', 'Education') }}</span></div>
+          <div class="detail-content">
+            {% for school in data.schools %}
+            <div class="timeline-block">
+              <h1>{{ school.section or school.degree or school.name }}</h1>
+              <p>{{ school.name }}{% if school.where %}, {{ school.where }}{% endif %}</p>
+              <time>
+                {% if school.from_year and school.to_year %}{{ school.from_year }} - {{ school.to_year }}
+                {% elif school.when %}{{ school.when }}
+                {% endif %}
+              </time>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% if data.skill_groups %}
+        <div class="detail-section grouped-skills">
+          <div class="detail-title"><span>{{ data.labels.get('Skills & Proficiency', 'Skills') }}</span></div>
+          <div class="detail-content">
+            {% for group in data.skill_groups %}
+              <h2>{{ group.name }}</h2>
+              <ul class="pg-list">
+              {% for s in group.skills %}
+                <li>
+                  <span>{{ s.name }}</span>
+                  <div class="sb-skeleton"><div class="skillbar" style="--pgbar-length: {{ s.level }}%"></div></div>
+                </li>
+              {% endfor %}
+              </ul>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% if data.expertise %}
+        <div class="detail-section expertise">
+          <div class="detail-title"><span>{{ data.labels.get('Area of expertise', 'Expertise') }}</span></div>
+          <div class="detail-content">
+            {% for ex in data.expertise %}
+              <h2>{{ ex.name }}</h2>
+              <ul>
+              {% for line in ex.lines %}
+                <li>{{ line }}</li>
+              {% endfor %}
+              </ul>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% if data.projects %}
+        <div class="detail-section projects">
+          <div class="detail-title"><span>{{ data.labels.get('Projects', 'Projects') }}</span></div>
+          <div class="detail-content">
+            <ul>
+              {% for p in data.projects %}
+                <li><a href="{{ p.url }}" target="_blank">{{ p.name }}</a>{% if p.description %}: {{ p.description }}{% endif %}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

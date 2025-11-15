@@ -1,3 +1,0 @@
-[submodule "plugins/official"]
-	path = plugins/official
-	url = https://github.com/getpelican/pelican-plugins
