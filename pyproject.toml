@@ -14,6 +14,8 @@ dependencies = [
     "rich>=14.2.0",
     "weasyprint>=66.0",
     "pydantic>=2.0.0",
+    "babel>=2.17.0",
+    "qrcode[pil]>=8.2",
 ]
 
 [project.urls]
@@ -24,8 +26,80 @@ resume = "resume.__main__:app"
 [dependency-groups]
 dev = [
     "livereload<3.0.0,>=2.6.3",
+    "codespell>=2.3.0",
+    "mypy>=1.11.0",
+    "ruff>=0.5.5",
+    "types-PyYAML",
+    "emotional",
 ]
 
 [build-system]
 requires = ["uv_build>=0.9.9,<0.10.0"]
 build-backend = "uv_build"
+
+
+[tool.commitizen]
+name = "emotional"
+github = "noirbizarre/axel.haustant.fr"
+order_by_scope = true
+version_provider = "pep621"
+update_changelog_on_bump = true
+changelog_merge_prerelease = true
+
+
+[tool.codespell]
+ignore-words = ".codespellignore"
+# skip = "./reports,*.lock,CHANGELOG.md,./assets/*.json"
+
+
+[tool.ruff]
+line-length = 100
+respect-gitignore = true
+show-fixes = true
+
+[tool.ruff.lint]
+select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # McCabe # fake8-comprehension
+    "C",
+    # Pyupgrade
+    "UP",
+    # isort
+    "I001",
+]
+extend-safe-fixes = ["C", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["resume"]
+lines-between-types = 1
+
+
+[tool.mypy]
+python_version = "3.14"
+exclude = [
+    "/data/",
+    "/site/",
+]
+# https://mypy.readthedocs.io/en/stable/command_line.html#cmdoption-mypy-ignore-missing-imports
+ignore_missing_imports = true
+plugins = [
+    "pydantic.mypy",
+]
+
+[tool.jinja-lsp]
+templates = "templates"
+backend = ["src"]
+lang = "python"
+hide_undefined = true
+
+[tool.resume]
+url = "https://axel.haustant.fr"
+languages = ["fr", "en"]
+google_analytics = "G-1GBRQCE66R"

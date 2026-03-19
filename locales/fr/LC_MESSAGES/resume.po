@@ -1,0 +1,85 @@
+# French translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-23 23:42+0100\n"
+"PO-Revision-Date: 2016-08-03 13:19+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/resume.html.j2:33
+msgid "Career Profile"
+msgstr "Profil de carrière"
+
+#: templates/resume.html.j2:42
+msgid "Me"
+msgstr "Moi"
+
+#: templates/resume.html.j2:56 templates/resume.html.j2:136
+msgid "Expertise"
+msgstr "Expertise"
+
+#: templates/resume.html.j2:64
+msgid "Languages"
+msgstr "Langues"
+
+#: templates/resume.html.j2:73 templates/resume.html.j2:118
+msgid "Skills"
+msgstr "Compétences"
+
+#: templates/resume.html.j2:87
+msgid "Experiences"
+msgstr "Expérience"
+
+#: templates/resume.html.j2:101
+msgid "Education"
+msgstr "Scolarité"
+
+#: templates/resume.html.j2:151
+msgid "Projects"
+msgstr "Projets"
+
+#~ msgid "Welcome to our"
+#~ msgstr ""
+
+#~ msgid "Me"
+#~ msgstr "Moi"
+
+#~ msgid "Phone"
+#~ msgstr "Téléphone"
+
+#~ msgid "Education"
+#~ msgstr "Scolarité"
+
+#~ msgid "Languages"
+#~ msgstr "Langues"
+
+#~ msgid "Career Profile"
+#~ msgstr "Profil de carrière"
+
+#~ msgid "Area of expertise"
+#~ msgstr "Domaines de compétence"
+
+#~ msgid "Experiences"
+#~ msgstr "Expérience"
+
+#~ msgid "Present"
+#~ msgstr "Aujourd'hui"
+
+#~ msgid "Projects"
+#~ msgstr "Projets"
+
+#~ msgid "Skills &amp; Proficiency"
+#~ msgstr "Compétences"
+

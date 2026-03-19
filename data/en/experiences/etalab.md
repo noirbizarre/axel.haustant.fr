@@ -1,6 +1,6 @@
 ---
 company: Etalab
-where: Paris
+location: Paris
 start: 2013-08
 end: 2019-10
 role: Teachlead

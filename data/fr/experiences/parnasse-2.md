@@ -1,6 +1,6 @@
 ---
 company: Parnasse (Orange)
-where: Paris
+location: Paris
 start: 2009-07
 end: 2010-07
 role: Techlead J2EE

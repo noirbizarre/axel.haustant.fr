@@ -3,7 +3,7 @@ company: Mappy
 start: 2012-02
 end: 2013-08
 role: Techlead GeoData
-where: Paris
+location: Paris
 ---
 Suite à la fusion de Mappy et d’UrbanDive,
 j’ai intégré l’équipe Coeur de métier/Data pour aider à la migration agile

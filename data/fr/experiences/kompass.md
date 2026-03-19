@@ -1,6 +1,6 @@
 ---
 company: Kompass
-where: Courbevoie
+location: Courbevoie
 start: 2010-08
 end: 2011-04
 role: Consultant en intégration continue

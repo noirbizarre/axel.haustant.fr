@@ -3,7 +3,7 @@ company: Mappy
 start: 2012-02
 end: 2013-08
 role: Techlead GeoData
-where: Paris
+location: Paris
 ---
 After the merge between Mappy and UrbandDive,
 I join the COre/Data team to help to the agility transition

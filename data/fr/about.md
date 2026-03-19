@@ -36,11 +36,6 @@ social:
     icon: linkedin
     link: http://fr.linkedin.com/in/axelhaustant
     display: axelhaustant
-  # -
-  #   name: Viadeo
-  #   icon: viadeo
-  #   link: http://www.viadeo.com/fr/profile/axel.haustant
-  #   display: axel.haustant
 
 
 languages:

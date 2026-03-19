@@ -1,6 +1,6 @@
 ---
 company: Parnasse (Orange)
-where: Lyon
+location: Lyon
 start: 2009-01
 end: 2009-07
 role: Ingénieur d’étude J2EE

@@ -1,6 +1,6 @@
 ---
 company: Société Générale Security Services
-where: La Défense
+location: La Défense
 role: Consultant J2EE
 start: 2011-05
 end: 2011-07

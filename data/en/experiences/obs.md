@@ -1,6 +1,6 @@
 ---
 company: Orange Business Services/IT&Labs
-where: Lyon
+location: Lyon
 start: 2008-07
 end: 2009-01
 role: Ingénieur d’étude

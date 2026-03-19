@@ -1,0 +1,48 @@
+---
+first_name: Axel
+last_name: Haustant
+avatar: /images/me1.png
+
+email: axel@haustant.fr
+phone:
+  display: +33 (0)7 81 14 97 07
+  number: "+33781149707"
+
+websites:
+  -
+    name: noirbizar.re
+    link: https://noirbizar.re
+  -
+    name: Mon CV
+    link: https://axel.haustant.fr
+
+social:
+  -
+    name: github
+    icon: github
+    link: http://github.com/noirbizarre
+    display: github.com/noirbizarre
+  -
+    name: Twitter
+    icon: twitter
+    link: http://twitter.com/noirbizarre
+    display: '@noirbizarre'
+  -
+    name: LinkedIn
+    icon: linkedin
+    link: http://fr.linkedin.com/in/axelhaustant
+    display: axelhaustant
+
+skills:
+  -
+    name: Code
+    rate: 95
+  -
+    name: Design
+    rate: 75
+  -
+    name: Agilité
+    rate: 85
+  -
+    name: DevOps
+    rate: 85

@@ -1,6 +1,6 @@
 ---
 opensource:
-  - 
+  -
     name: udata
     url: https://github.com/opendatateam/udata
     description: Un portail opendata personnalisable et extensible
