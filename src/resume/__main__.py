@@ -52,6 +52,7 @@ def dev(port: int = 5000, *, config: Config = Config()):
 
     def reload():
         build(config=config)
+
     server = Server()
 
     server.watch(DATA, reload)
@@ -68,9 +69,6 @@ def dev(port: int = 5000, *, config: Config = Config()):
 @app.command
 def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
     """Build the site using structured data models"""
-    print(f"{config=}")
-    print(f"{deploy=}")
-
     languages = config.languages or ["en"]
     default_lang = config.default_language or languages[0]
 
@@ -196,7 +194,9 @@ def pdf(
         return False
 
     i18n.set_locale(locale)
-    html = template.render(lang=locale, data=dataset, config=config, deploy=deploy, root=".", pdf=True)
+    html = template.render(
+        lang=locale, data=dataset, config=config, deploy=deploy, root=".", pdf=True
+    )
     OUT.mkdir(parents=True, exist_ok=True)
     pdf_name = output or f"resume-{locale}.pdf"
     out_path = OUT / pdf_name

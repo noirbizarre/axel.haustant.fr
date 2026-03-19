@@ -25,7 +25,6 @@ class ContextTranslations:
             locale: Translations.load(directory, locales=[locale], domain=domain)
             for locale in locales
         }
-        print(f"{self.locales=}")
 
     @property
     def locale(self) -> str:
