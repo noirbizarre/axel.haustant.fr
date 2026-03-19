@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════
+   WeasyPrint PDF stylesheet
+   Loaded after print.css only when generating PDF (pdf=True).
+   Overrides @page to remove all margins for edge-to-edge output.
+   ═══════════════════════════════════════════════════════════ */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+/* With zero page margins the resume box needs no outer whitespace. */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.resume {
+  margin: 0;
+  width: 100%;
+}

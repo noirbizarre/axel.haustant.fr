@@ -10,6 +10,7 @@ from rich import traceback
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 from rich.prompt import Prompt
+from weasyprint import HTML
 
 from . import i18n, templates
 from .config import Config, Deploy
@@ -181,15 +182,6 @@ def pdf(
     deploy: Deploy = Deploy(),
 ):
     """Generate PDF version of the resume (per language)."""
-
-    try:
-        from weasyprint import HTML  # type: ignore
-    except ImportError:
-        console.print(
-            "[red]WeasyPrint not installed. Please add 'weasyprint' to dependencies and reinstall.[/red]"
-        )
-        return False
-
     env = templates.get_env(config)
     try:
         template = env.get_template("resume.html.j2")
@@ -204,7 +196,7 @@ def pdf(
         return False
 
     i18n.set_locale(locale)
-    html = template.render(lang=locale, data=dataset, config=config, deploy=deploy, root=".")
+    html = template.render(lang=locale, data=dataset, config=config, deploy=deploy, root=".", pdf=True)
     OUT.mkdir(parents=True, exist_ok=True)
     pdf_name = output or f"resume-{locale}.pdf"
     out_path = OUT / pdf_name

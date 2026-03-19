@@ -1,0 +1,96 @@
+/* ═══════════════════════════════════════════════════════════
+   Browser Print stylesheet
+   NOT loaded for WeasyPrint PDF (pdf.css overrides @page there).
+   ═══════════════════════════════════════════════════════════ */
+
+/* Pages 2, 3, … get a generous top margin so content doesn't
+   start right at the paper edge after a page break. */
+@page {
+  size: A4 portrait;
+  /* margin: 3cm 1cm 1cm; */
+  margin-top: 1cm;
+}
+
+/* First page: smaller top margin — the header sits naturally at top. */
+@page :first {
+  margin-top: 0cm;
+}
+
+/* ── Ensure backgrounds & colors print ───────────────────── */
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── Font: bigger than old print (8.5pt), smaller than screen ─ */
+html {
+  font-size: 10pt;
+}
+
+/* ── Remove screen chrome ────────────────────────────────── */
+body {
+  background: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+.resume {
+  box-shadow: none;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+}
+
+/* ── Header: always horizontal ───────────────────────────── */
+.header {
+  flex-direction: row !important;
+  text-align: left !important;
+  padding: 1rem 1.2rem !important;
+}
+
+.header-identity {
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.header-contacts {
+  text-align: right !important;
+}
+
+/* ── Body: display:table for reliable cross-page columns ─── */
+.body {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.sidebar,
+.timeline-col,
+.rightcol {
+  display: table-cell !important;
+  vertical-align: top !important;
+}
+
+.sidebar {
+  width: 23% !important;
+}
+
+.rightcol {
+  width: 27% !important;
+}
+
+/* ── Avoid orphaned entries mid-page ─────────────────────── */
+.timeline-entry,
+.edu-entry,
+.skill-item,
+.expertise-group,
+.skill-group,
+.rightcol-section {
+  break-inside: avoid;
+}
+
+/* ── Header links stay white ─────────────────────────────── */
+.header a,
+.contact-value {
+  color: #ffffff;
+}

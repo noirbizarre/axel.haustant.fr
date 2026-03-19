@@ -1,164 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ lang }}">
   <head>
     <meta charset="utf-8"/>
     <title>{{ data.profile.full_name }}</title>
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/web.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ root }}/style/print.css" media="print" />
-    
+    <link rel="stylesheet" type="text/css" href="{{ root }}/style/print.css" media="print"/>
+    {% if pdf %}<link rel="stylesheet" type="text/css" href="{{ root }}/style/pdf.css" media="print"/>{% endif %}
+
     {% if deploy.google_analytics %}
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ deploy.google_analytics }}"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ deploy.google_analytics }}');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ deploy.google_analytics }}');
     </script>
     {% endif %}
   </head>
   <body>
-    <div class="wrapper">
-      <div class="intro">
-        <section class="profile">
-          <div class="photo">
-            <img src="{{ root }}{{ data.profile.avatar or '/images/me1.png' }}" alt="{{ data.about.full_name }}" />
+    <div class="resume">
+
+      <!-- ═══════════════ HEADER ═══════════════ -->
+      <header class="header">
+        <div class="header-identity">
+          <img class="avatar" src="{{ root }}{{ data.profile.avatar or '/images/me1.png' }}" alt="{{ data.profile.full_name }}"/>
+          <div class="header-name">
+            <h1>{{ data.profile.full_name }}</h1>
+            {% if data.about.tagline %}<p class="tagline">{{ data.about.tagline }}</p>{% endif %}
           </div>
-          <div class="bio">
-            <h1 class="name">{{ data.profile.full_name }}</h1>
-            {% if data.about.tagline %}<p class="profession">{{ data.about.tagline }}</p>{% endif %}
-          </div>
-        </section>
-        <div class="intro-section about">
-          <h1 class="title">{{ _('Career Profile') }}</h1>
-          {% if data.about.content %}
-            <div class="paragraph">
-              {# Simple markdown paragraph split #}
-              {{ data.about.html | safe }}
-            </div>
-          {% endif %}
         </div>
-        <div class="intro-section contact">
-          <h1 class="title">{{ _('Me') }}</h1>
-          {% if data.profile.phone and data.profile.phone.display %}
-          <div class="info-section"><span>{{ data.profile.phone.display }}</span></div>
+        <div class="header-contacts">
+          {% if data.profile.phone %}
+          <div class="header-contact-item">
+            <span class="contact-label">{{ _('Call Me') }}</span>
+            <a href="tel:{{ data.profile.phone.number }}" class="contact-value">{{ data.profile.phone.display }}</a>
+          </div>
           {% endif %}
           {% if data.profile.email %}
-          <div class="info-section"><span>{{ data.profile.email }}</span></div>
+          <div class="header-contact-item">
+            <span class="contact-label">{{ _('Email') }}</span>
+            <a href="mailto:{{ data.profile.email }}" class="contact-value">{{ data.profile.email }}</a>
+          </div>
           {% endif %}
-          {% for site in data.profile.websites %}
-          <div class="info-section link">
-            <a target="_blank" rel="author" href="{{ site.link }}">{{ site.name }}</a>
-          </div>
-          {% endfor %}
         </div>
-        <div class="intro-section follow">
-          <h1 class="title">{{ _('Expertise') }}</h1>
-          {% for sn in data.profile.social %}
-          <div class="info-section link">
-            <a target="_blank" rel="author" href="{{ sn.link }}">{{ sn.display or sn.name }}</a>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="intro-section languages">
-          <h1 class="title">{{ _('Languages') }}</h1>
-          <ul>
-            {% for l in data.about.languages %}
-              <li>{{ l.name }}{% if l.level %} – {{ l.level }}{% endif %}</li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% if data.about.skills %}
-        <div class="intro-section rated-skills">
-          <h1 class="title">{{ _('Skills') }}</h1>
-          <ul class="pg-list">
-            {% for s in data.about.skills %}
-            <li>
-              <span>{{ s.name }}</span>
-              <div class="sb-skeleton"><div class="skillbar" style="--pgbar-length: {{ s.rate }}%"></div></div>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-      </div>
-      <div class="detail">
-        <div class="detail-section experiences">
-          <div class="detail-title"><span>{{ _('Experiences') }}</span></div>
-          <div class="detail-content">
-            {% for exp in data.experiences %}
-            <div class="timeline-block">
-              <h1>{{ exp.company }}{% if exp.role %} – {{ exp.role }}{% endif %}</h1>
-              <p>{% if exp.location %}{{ exp.location }} · {% endif %}{% if exp.start %}{{ exp.start.strftime('%Y-%m') }}{% endif %} – {% if exp.end %}{{ exp.end.strftime('%Y-%m') }}{% else %}{{ data.labels.get('Present','Present') }}{% endif %}</p>
-              {% if exp.html %}
-              <div class="exp-content">{{ exp.html | safe }}</div>
+      </header>
+
+      <!-- ═══════════════ BODY ═══════════════ -->
+      <div class="body">
+
+        <!-- ─── LEFT SIDEBAR ─── -->
+        <aside class="sidebar">
+
+          <!-- Personal -->
+          <section class="sidebar-section">
+            <h2 class="section-title">{{ _('Personal') }}</h2>
+            <table class="info-table">
+              <tr>
+                <th>{{ _('Name') }}</th>
+                <td>{{ data.profile.full_name }}</td>
+              </tr>
+              {% if data.profile.email %}
+              <tr>
+                <th>{{ _('Email') }}</th>
+                <td><a href="mailto:{{ data.profile.email }}">{{ data.profile.email }}</a></td>
+              </tr>
               {% endif %}
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-        <div class="detail-section edu">
-          <div class="detail-title"><span>{{ _('Education') }}</span></div>
-          <div class="detail-content">
+              {% if data.profile.phone %}
+              <tr>
+                <th>{{ _('Phone') }}</th>
+                <td><a href="tel:{{ data.profile.phone.number }}">{{ data.profile.phone.display }}</a></td>
+              </tr>
+              {% endif %}
+              {% for lang_info in data.about.languages %}
+              <tr>
+                <th>{{ lang_info.name }}</th>
+                <td>{{ lang_info.level }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </section>
+
+          <!-- Education -->
+          {% if data.schools %}
+          <section class="sidebar-section">
+            <h2 class="section-title">{{ _('Education') }}</h2>
             {% for school in data.schools %}
-            <div class="timeline-block">
-              <h1>{{ school.section or school.degree or school.name }}</h1>
-              <p>{{ school.name }}{% if school.where %}, {{ school.where }}{% endif %}</p>
-              <time>
-                {% if school.from_year and school.to_year %}{{ school.from_year }} - {{ school.to_year }}
+            <div class="edu-entry">
+              <strong>{{ school.section or school.degree or school.name }}</strong>
+              {% if school.section or school.degree %}
+              <span class="edu-school">{{ school.name }}{% if school.where %}, {{ school.where }}{% endif %}</span>
+              {% endif %}
+              <span class="edu-year">
+                {% if school.from_year and school.to_year %}{{ school.from_year }} – {{ school.to_year }}
                 {% elif school.when %}{{ school.when }}
                 {% endif %}
-              </time>
+              </span>
+            </div>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          <!-- Rated Skills -->
+          {% set rated_skills = data.profile.skills or data.about.skills %}
+          {% if rated_skills %}
+          <section class="sidebar-section">
+            <h2 class="section-title">{{ _('Skills') }}</h2>
+            {% for s in rated_skills %}
+            <div class="skill-item">
+              <label>{{ s.name }}</label>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: {{ s.rate }}%"></div></div>
+            </div>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          <!-- Online & Social -->
+          {% if data.profile.social or data.profile.websites %}
+          <section class="sidebar-section">
+            <h2 class="section-title">{{ _('Online Profile') }}</h2>
+            {% for sn in data.profile.social %}
+            <div class="online-item">
+              <a href="{{ sn.link }}" target="_blank" rel="noopener">{{ sn.display or sn.name }}</a>
+            </div>
+            {% endfor %}
+            {% for site in data.profile.websites %}
+            <div class="online-item">
+              <a href="{{ site.link }}" target="_blank" rel="noopener">{{ site.name }}</a>
+            </div>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+        </aside>
+
+        <!-- ─── TIMELINE (middle) ─── -->
+        <main class="timeline-col">
+          <h2 class="section-title">{{ _('Timeline') }}</h2>
+          <div class="timeline">
+            {% for exp in data.experiences %}
+            <div class="timeline-entry">
+              <div class="timeline-year-badge">{{ exp.start.strftime('%Y') if exp.start else '?' }}</div>
+              <div class="timeline-content">
+                <h3 class="timeline-role">{{ exp.role or exp.company }}</h3>
+                <div class="timeline-meta">
+                  {{ exp.company }}{% if exp.location %}, {{ exp.location }}{% endif %}
+                </div>
+                {% if exp.html %}
+                <div class="timeline-desc">{{ exp.html | safe }}</div>
+                {% endif %}
+              </div>
             </div>
             {% endfor %}
           </div>
-        </div>
-        {% if data.skill_groups %}
-        <div class="detail-section grouped-skills">
-          <div class="detail-title"><span>{{ _('Skills') }}</span></div>
-          <div class="detail-content">
-            {% for group in data.skill_groups %}
-              <h2>{{ group.name }}</h2>
-              <ul class="pg-list">
-              {% for s in group.skills %}
-                <li>
-                  <span>{{ s.name }}</span>
-                  <div class="sb-skeleton"><div class="skillbar" style="--pgbar-length: {{ s.level }}%"></div></div>
-                </li>
-              {% endfor %}
-              </ul>
-            {% endfor %}
-          </div>
-        </div>
-        {% endif %}
-        {% if data.expertise %}
-        <div class="detail-section expertise">
-          <div class="detail-title"><span>{{ _('Expertise') }}</span></div>
-          <div class="detail-content">
+        </main>
+
+        <!-- ─── RIGHT COLUMN ─── -->
+        <aside class="rightcol">
+
+          <!-- About Me -->
+          {% if data.about.html %}
+          <section class="rightcol-section">
+            <h2 class="section-title">{{ _('About Me') }}</h2>
+            <div class="about-text">{{ data.about.html | safe }}</div>
+          </section>
+          {% endif %}
+
+          <!-- Expertise -->
+          {% if data.expertise %}
+          <section class="rightcol-section">
+            <h2 class="section-title">{{ _('Expertise') }}</h2>
             {% for ex in data.expertise %}
-              <h2>{{ ex.name }}</h2>
+            <div class="expertise-group">
+              <h3>{{ ex.name }}</h3>
               <ul>
-              {% for line in ex.lines %}
-                <li>{{ line }}</li>
-              {% endfor %}
+                {% for line in ex.lines %}<li>{{ line }}</li>{% endfor %}
               </ul>
+            </div>
             {% endfor %}
-          </div>
-        </div>
-        {% endif %}
-        {% if data.projects %}
-        <div class="detail-section projects">
-          <div class="detail-title"><span>{{ _('Projects') }}</span></div>
-          <div class="detail-content">
-            <ul>
+          </section>
+          {% endif %}
+
+          <!-- Skill Groups -->
+          {% if data.skill_groups %}
+          <section class="rightcol-section">
+            <h2 class="section-title">{{ _('Technical Skills') }}</h2>
+            {% for group in data.skill_groups %}
+            <div class="skill-group">
+              <h3>{{ group.name }}</h3>
+              {% for s in group.skills %}
+              <div class="skill-item">
+                <label>{{ s.name }}</label>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: {{ s.level }}%"></div></div>
+              </div>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </section>
+          {% endif %}
+
+          <!-- Projects -->
+          {% if data.projects %}
+          <section class="rightcol-section">
+            <h2 class="section-title">{{ _('Projects') }}</h2>
+            <ul class="projects-list">
               {% for p in data.projects %}
-                <li><a href="{{ p.url }}" target="_blank">{{ p.name }}</a>{% if p.description %}: {{ p.description }}{% endif %}</li>
+              <li>
+                <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a>
+                {% if p.description %}<span>: {{ p.description }}</span>{% endif %}
+              </li>
               {% endfor %}
             </ul>
-          </div>
-        </div>
-        {% endif %}
-      </div>
-    </div>
+          </section>
+          {% endif %}
+
+        </aside>
+      </div><!-- .body -->
+    </div><!-- .resume -->
   </body>
 </html>

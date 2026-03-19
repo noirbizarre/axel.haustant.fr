@@ -183,6 +183,7 @@ class Profile(BaseModel):
     phone: Phone | None = None
     websites: list[Website] = Field(default_factory=list)
     social: list[SocialNetwork] = Field(default_factory=list)
+    skills: list[SkillRated] = Field(default_factory=list)
 
     @property
     def full_name(self) -> str:
