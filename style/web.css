@@ -140,8 +140,6 @@ ul {
 .body {
   display: grid;
   grid-template-columns: 280px 1fr 320px;
-  grid-template-rows: auto;
-  align-items: start;
 }
 
 /* ── Shared: section title ───────────────────────────────── */
