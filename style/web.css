@@ -51,6 +51,8 @@ ul {
   margin: 0 auto;
   background: var(--bg-white);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -486,37 +488,103 @@ ul {
 }
 
 /* ══════════════════════════════════════════════════════════
-   RESPONSIVE – small screens only (not print)
-   Using `screen` keyword so print never triggers this block.
+   RESPONSIVE – tablet (not print)
+   Two-column layout: sidebar + main content merged,
+   right column spans full width below.
    ══════════════════════════════════════════════════════════ */
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 14pt;
+  }
+
   body {
     padding: 0;
   }
 
+  .resume {
+    box-shadow: none;
+  }
+
+  .body {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .timeline-col {
+    border-right: none;
+  }
+
+  .rightcol {
+    grid-column: 1 / -1;
+    width: 100%;
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE – mobile (not print)
+   Single-column stacked layout.
+   Using `screen` keyword so print never triggers this block.
+   ══════════════════════════════════════════════════════════ */
+@media screen and (max-width: 860px) {
+  html {
+    font-size: 13pt;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  /* ── Header ─────────────────────────────────────────── */
   .header {
     flex-direction: column;
     text-align: center;
-    padding: 1.25rem;
+    padding: 1.25rem 1rem;
+    gap: 0.75rem;
   }
 
   .header-identity {
     flex-direction: column;
     align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-name h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
   }
 
   .header-contacts {
     text-align: center;
   }
 
+  .header-contact-item {
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .contact-text {
+    text-align: center;
+  }
+
+  /* ── Body: single-column stacked ────────────────────── */
   .body {
     display: flex;
     flex-direction: column;
   }
 
+  /* Reorder: timeline first, right column second, sidebar last */
+  .timeline-col { order: 1; }
+  .rightcol     { order: 2; }
+  .sidebar      { order: 3; }
+
   .sidebar {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
     width: 100%;
   }
 
@@ -527,6 +595,93 @@ ul {
 
   .rightcol {
     width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Timeline tweaks ────────────────────────────────── */
+  .timeline-year-badge {
+    flex: 0 0 65px;
+    margin-right: 0.75rem;
+  }
+
+  /* ── Touch-friendly links ───────────────────────────── */
+  .online-item {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .online-item a {
+    padding: 0.25rem 0;
+  }
+
+  .info-table td a,
+  .projects-list a {
+    display: inline-block;
+    min-height: 44px;
+    line-height: 44px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE – narrow phones (not print)
+   Extra adjustments for very small screens.
+   ══════════════════════════════════════════════════════════ */
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 12pt;
+  }
+
+  .header {
+    padding: 1rem 0.75rem;
+  }
+
+  .header-name h1 {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* Stack timeline badge above the content instead of side-by-side */
+  .timeline-entry {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-year-badge {
+    margin-right: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-content {
+    border-left: none;
+    padding-left: 0;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-entry:last-child .timeline-content {
+    border-bottom: none;
+  }
+
+  .timeline-content::before {
+    display: none;
+  }
+
+  /* Tighter padding */
+  .sidebar,
+  .timeline-col,
+  .rightcol {
+    padding: 1rem 0.75rem;
+  }
+
+  /* Remove touch-target overrides that break table alignment */
+  .info-table td a {
+    min-height: unset;
+    line-height: inherit;
   }
 }
 
