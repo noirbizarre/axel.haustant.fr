@@ -6,6 +6,13 @@
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/web.css"/>
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/print.css" media="print"/>
     {% if pdf %}<link rel="stylesheet" type="text/css" href="{{ root }}/style/pdf.css" media="print"/>{% endif %}
+    {%- for fav in favicons %}
+    {%- if fav.format == "ico" %}
+    <link rel="icon" type="{{ fav.mime_type }}" href="{{ root }}/images/{{ fav.filename }}"/>
+    {%- elif fav.rel and fav.prefix != "mstile" %}
+    <link rel="{{ fav.rel }}" type="{{ fav.mime_type }}" sizes="{{ fav.sizes }}" href="{{ root }}/images/{{ fav.filename }}"/>
+    {%- endif %}
+    {%- endfor %}
     {%- for other_lang in config.languages  %}
     {%- if other_lang != lang %}
     <link rel="alternate" hreflang="{{ other_lang }}" href="/{{ other_lang }}" />

@@ -1,7 +1,11 @@
+import shutil
+
 from dataclasses import dataclass
 from pathlib import Path
 
 import qrcode
+
+from PIL import Image
 
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import RadialGradiantColorMask
@@ -15,6 +19,21 @@ class Favicon:
     dimensions: tuple[int, int]
     prefix: str
 
+    @property
+    def filename(self) -> str:
+        w, h = self.dimensions
+        return f"{self.prefix}-{w}x{h}.{self.format}"
+
+    @property
+    def mime_type(self) -> str:
+        if self.format == "ico":
+            return "image/x-icon"
+        return f"image/{self.format}"
+
+    @property
+    def sizes(self) -> str:
+        return f"{self.dimensions[0]}x{self.dimensions[1]}"
+
 
 ICON_TYPES = (
     Favicon("ico", None, (64, 64), "favicon"),
@@ -24,66 +43,45 @@ ICON_TYPES = (
     Favicon("png", "icon", (96, 96), "favicon"),
     Favicon("png", "icon", (180, 180), "favicon"),
     Favicon("png", "apple-touch-icon", (57, 57), "apple-touch-icon"),
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (60, 60),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (72, 72),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (76, 76),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (114, 114),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (120, 120),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (144, 144),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (152, 152),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (167, 167),
-        "prefix": "apple-touch-icon",
-    },
-    {
-        "image_fmt": "png",
-        "rel": "apple-touch-icon",
-        "dimensions": (180, 180),
-        "prefix": "apple-touch-icon",
-    },
-    {"image_fmt": "png", "rel": None, "dimensions": (70, 70), "prefix": "mstile"},
-    {"image_fmt": "png", "rel": None, "dimensions": (270, 270), "prefix": "mstile"},
-    {"image_fmt": "png", "rel": None, "dimensions": (310, 310), "prefix": "mstile"},
-    {"image_fmt": "png", "rel": None, "dimensions": (310, 150), "prefix": "mstile"},
-    {"image_fmt": "png", "rel": "shortcut icon", "dimensions": (196, 196), "prefix": "favicon"},
+    Favicon("png", "apple-touch-icon", (60, 60), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (72, 72), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (76, 76), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (114, 114), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (120, 120), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (144, 144), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (152, 152), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (167, 167), "apple-touch-icon"),
+    Favicon("png", "apple-touch-icon", (180, 180), "apple-touch-icon"),
+    Favicon("png", None, (70, 70), "mstile"),
+    Favicon("png", None, (270, 270), "mstile"),
+    Favicon("png", None, (310, 310), "mstile"),
+    Favicon("png", None, (310, 150), "mstile"),
+    Favicon("png", "shortcut icon", (196, 196), "favicon"),
 )
+
+
+def generate_favicons(source: Path, out_dir: Path, *, root_dir: Path | None = None):
+    """Generate all favicon variants from *source* image into *out_dir*.
+
+    Args:
+        source: Path to the source logo image (e.g. ``logo.png``).
+        out_dir: Directory where favicon files will be written.
+        root_dir: If provided, also copy ``favicon.ico`` here for legacy compatibility.
+    """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    img = Image.open(source).convert("RGBA")
+
+    for fav in ICON_TYPES:
+        resized = img.resize(fav.dimensions, Image.Resampling.LANCZOS)
+        out_file = out_dir / fav.filename
+        if fav.format == "ico":
+            resized.save(out_file, format="ICO")
+        else:
+            resized.save(out_file, format="PNG")
+
+    if root_dir is not None:
+        ico_favicon = next(f for f in ICON_TYPES if f.format == "ico")
+        shutil.copy2(out_dir / ico_favicon.filename, root_dir / "favicon.ico")
 
 
 def generate_qr_code(file: Path, url: str, *, logo: Path | None = None):
@@ -104,14 +102,14 @@ def generate_qr_code(file: Path, url: str, *, logo: Path | None = None):
     )
     qr.add_data(url)
     qr.make(fit=True)
-    kwargs: dict = dict(
-        color_mask=RadialGradiantColorMask(
+    kwargs: dict = {
+        "color_mask": RadialGradiantColorMask(
             back_color=(255, 255, 255, 0),
             edge_color=(0, 0, 0, 255),
             center_color=(10, 99, 161, 255),
         ),
-        module_drawer=CircleModuleDrawer(),
-    )
+        "module_drawer": CircleModuleDrawer(),
+    }
     if logo and logo.exists():
         kwargs["embeded_image_path"] = str(logo)
     img = qr.make_image(**kwargs)

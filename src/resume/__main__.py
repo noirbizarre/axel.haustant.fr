@@ -15,7 +15,7 @@ from weasyprint import HTML
 
 from . import i18n, templates
 from .config import Config, Deploy
-from .images import generate_qr_code
+from .images import ICON_TYPES, generate_favicons, generate_qr_code
 from .json_resume import JsonResume
 from .models import load_resume_for_language
 
@@ -93,6 +93,10 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             out_file.write_bytes(image.read_bytes())
         progress.update(task_assets, description="Assets copied", completed=1)
 
+        task_favicons = progress.add_task("Generating favicons", total=None)
+        generate_favicons(IMAGES / "logo.png", OUT / "images", root_dir=OUT)
+        progress.update(task_favicons, description="Favicons generated", completed=1)
+
         if deploy.url:
             task_qr = progress.add_task("Generating QR code", total=None)
             generate_qr_code(
@@ -112,7 +116,12 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             index_file = out_lang_dir / "index.html"
             index_file.write_text(
                 template.render(
-                    lang=lang, data=dataset, config=config, deploy=deploy, root=deploy.url
+                    lang=lang,
+                    data=dataset,
+                    config=config,
+                    deploy=deploy,
+                    root=deploy.url,
+                    favicons=ICON_TYPES,
                 )
             )
             progress.update(task_lang, description=f"Built {lang}", completed=1)
@@ -120,7 +129,13 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             # Generate PDF
             task_pdf = progress.add_task(f"Generating PDF for {lang}", total=None)
             pdf_html = template.render(
-                lang=lang, data=dataset, config=config, deploy=deploy, root=".", pdf=True
+                lang=lang,
+                data=dataset,
+                config=config,
+                deploy=deploy,
+                root=".",
+                pdf=True,
+                favicons=ICON_TYPES,
             )
             pdf_path = out_lang_dir / dataset.profile.pdf_filename
             HTML(string=pdf_html, base_url=config.root).write_pdf(str(pdf_path))
@@ -131,7 +146,11 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
         redirect_template = env.get_template("redirect.html.j2")
         root_index.write_text(
             redirect_template.render(
-                default_lang=default_lang, config=config, deploy=deploy, root=deploy.url
+                default_lang=default_lang,
+                config=config,
+                deploy=deploy,
+                root=deploy.url,
+                favicons=ICON_TYPES,
             )
         )
 
