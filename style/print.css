@@ -108,3 +108,7 @@ timeline-entry {
 timeline-entry + timeline-entry {
   padding-top: 0rem;
 }
+
+.no-print {
+  display: none !important;
+}
