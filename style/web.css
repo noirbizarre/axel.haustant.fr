@@ -527,7 +527,7 @@ ul {
    ══════════════════════════════════════════════════════════ */
 @media screen and (max-width: 860px) {
   html {
-    font-size: 13pt;
+    font-size: 14pt;
   }
 
   body {
@@ -538,14 +538,14 @@ ul {
   .header {
     flex-direction: column;
     text-align: center;
-    padding: 1.25rem 1rem;
-    gap: 0.75rem;
+    padding: 1rem;
+    gap: 0.5rem;
   }
 
   .header-identity {
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .header-name h1 {
@@ -554,8 +554,8 @@ ul {
   }
 
   .avatar {
-    width: 72px;
-    height: 72px;
+    width: 96px;
+    height: 96px;
   }
 
   .header-contacts {
@@ -564,7 +564,6 @@ ul {
 
   .header-contact-item {
     justify-content: center;
-    min-height: 44px;
   }
 
   .contact-text {
@@ -606,7 +605,6 @@ ul {
 
   /* ── Touch-friendly links ───────────────────────────── */
   .online-item {
-    min-height: 44px;
     align-items: center;
   }
 
@@ -628,11 +626,11 @@ ul {
    ══════════════════════════════════════════════════════════ */
 @media screen and (max-width: 480px) {
   html {
-    font-size: 12pt;
+    font-size: 13pt;
   }
 
   .header {
-    padding: 1rem 0.75rem;
+    padding: 0.75rem;
   }
 
   .header-name h1 {
@@ -641,34 +639,58 @@ ul {
   }
 
   .avatar {
-    width: 56px;
-    height: 56px;
+    width: 72px;
+    height: 72px;
   }
 
-  /* Stack timeline badge above the content instead of side-by-side */
+  /* Year pill vertically centered between title & meta,
+     description spans full width below */
   .timeline-entry {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .timeline-year-badge {
-    margin-right: 0;
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-content {
-    border-left: none;
-    padding-left: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.5rem;
+    padding-top: 0.75rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border);
   }
 
-  .timeline-entry:last-child .timeline-content {
+  .timeline-entry:last-child {
     border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .timeline-year-badge {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin: 0;
+    height: 24px;
+    font-size: 0.6rem;
+    padding: 0 0.6rem;
+    border-radius: 12px;
+  }
+
+  .timeline-content {
+    display: contents;
   }
 
   .timeline-content::before {
     display: none;
+  }
+
+  .timeline-role {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .timeline-meta {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .timeline-desc {
+    grid-column: 1 / -1;
+    grid-row: 3;
   }
 
   /* Tighter padding */
