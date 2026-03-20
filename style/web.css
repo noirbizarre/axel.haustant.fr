@@ -153,6 +153,7 @@ ul {
   font-weight: 600;
   color: #ffffff;
   text-decoration: none;
+  vertical-align: middle;
 }
 
 .contact-value:hover {
