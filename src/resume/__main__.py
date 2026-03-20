@@ -50,10 +50,12 @@ def dev(port: int = 5000, *, config: Config = Config()):
     """
     from livereload import Server
 
+    deploy = Deploy(url=f"http://localhost:{port}")
     def reload():
-        build(config=config)
+        build(config=config, deploy=deploy)
 
     server = Server()
+
 
     server.watch(DATA, reload)
     server.watch(STYLE, reload)
