@@ -494,7 +494,7 @@ ul {
    ══════════════════════════════════════════════════════════ */
 @media screen and (max-width: 1024px) {
   html {
-    font-size: 14pt;
+    font-size: 16pt;
   }
 
   body {
@@ -518,6 +518,11 @@ ul {
     width: 100%;
     border-top: 1px solid var(--border);
   }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -527,7 +532,7 @@ ul {
    ══════════════════════════════════════════════════════════ */
 @media screen and (max-width: 860px) {
   html {
-    font-size: 14pt;
+    font-size: 16pt;
   }
 
   body {
@@ -551,11 +556,6 @@ ul {
   .header-name h1 {
     font-size: 1.5rem;
     letter-spacing: 2px;
-  }
-
-  .avatar {
-    width: 96px;
-    height: 96px;
   }
 
   .header-contacts {
@@ -626,7 +626,7 @@ ul {
    ══════════════════════════════════════════════════════════ */
 @media screen and (max-width: 480px) {
   html {
-    font-size: 13pt;
+    font-size: 16pt;
   }
 
   .header {
@@ -636,11 +636,6 @@ ul {
   .header-name h1 {
     font-size: 1.3rem;
     letter-spacing: 1px;
-  }
-
-  .avatar {
-    width: 72px;
-    height: 72px;
   }
 
   /* Year pill vertically centered between title & meta,
