@@ -29,6 +29,9 @@
       gtag('config', '{{ deploy.google_analytics }}');
     </script>
     {% endif %}
+    {% if jsonld %}
+    <script type="application/ld+json">{{ jsonld | safe }}</script>
+    {% endif %}
   </head>
   <body>
     {# WeasyPrint's SVG renderer does not resolve CSS fill:currentColor,

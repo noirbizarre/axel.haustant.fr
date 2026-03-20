@@ -17,6 +17,7 @@ from . import i18n, templates
 from .config import Config, Deploy
 from .images import ICON_TYPES, generate_favicons, generate_qr_code
 from .json_resume import JsonResume
+from .jsonld import generate_jsonld
 from .models import load_resume_for_language
 
 traceback.install(show_locals=True, suppress=[sys.exec_prefix, sys.base_exec_prefix])
@@ -112,6 +113,8 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             dataset = load_resume_for_language(DATA / lang)
             out_lang_dir = OUT / lang
             out_lang_dir.mkdir(parents=True, exist_ok=True)
+            # Generate JSON-LD structured data for SEO
+            jsonld = generate_jsonld(dataset, lang, deploy, config)
             # Render index with structured data
             index_file = out_lang_dir / "index.html"
             index_file.write_text(
@@ -122,6 +125,7 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                     deploy=deploy,
                     root=deploy.url,
                     favicons=ICON_TYPES,
+                    jsonld=jsonld,
                 )
             )
             progress.update(task_lang, description=f"Built {lang}", completed=1)
