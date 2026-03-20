@@ -177,3 +177,6 @@ pyrightconfig.json
 
 inspiration/
 *.pdf
+
+# Generated build artifacts
+images/qrcode.png

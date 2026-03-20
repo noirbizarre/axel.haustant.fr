@@ -178,6 +178,16 @@
           </section>
           {% endif %}
 
+          <!-- QR Code (print/PDF only) -->
+          {% if deploy.url %}
+          <section class="sidebar-section sidebar-qrcode print-only">
+            <a href="{{ deploy.url }}">
+              <img class="qrcode" src="{{ root }}/images/qrcode.png" alt="QR Code: {{ deploy.url }}"/>
+            </a>
+          </section>
+          {% endif %}
+
+
         </aside>
 
         <!-- ─── TIMELINE (middle) ─── -->

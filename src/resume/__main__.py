@@ -14,6 +14,7 @@ from weasyprint import HTML
 
 from . import i18n, templates
 from .config import Config, Deploy
+from .images import generate_qr_code
 from .json_resume import JsonResume
 from .models import load_resume_for_language
 
@@ -51,11 +52,11 @@ def dev(port: int = 5000, *, config: Config = Config()):
     from livereload import Server
 
     deploy = Deploy(url=f"http://localhost:{port}")
+
     def reload():
         build(config=config, deploy=deploy)
 
     server = Server()
-
 
     server.watch(DATA, reload)
     server.watch(STYLE, reload)
@@ -90,6 +91,15 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             out_dir.parent.mkdir(parents=True, exist_ok=True)
             out_file.write_bytes(image.read_bytes())
         progress.update(task_assets, description="Assets copied", completed=1)
+
+        if deploy.url:
+            task_qr = progress.add_task("Generating QR code", total=None)
+            generate_qr_code(
+                OUT / "images" / "qrcode.png",
+                deploy.url,
+                logo=IMAGES / "logo-bg-white.png",
+            )
+            progress.update(task_qr, description="QR code generated", completed=1)
 
         for lang in languages:
             i18n.set_locale(lang)

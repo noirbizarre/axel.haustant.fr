@@ -292,6 +292,17 @@ ul {
   color: var(--primary);
 }
 
+/* QR code (print/PDF only – hidden on screen by .print-only) */
+.sidebar-qrcode {
+  text-align: center;
+}
+
+.sidebar-qrcode .qrcode {
+  width: 80%;
+  max-width: 150px;
+  height: auto;
+}
+
 /* Hide print-only elements on screen */
 .print-only {
   display: none;

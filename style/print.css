@@ -116,3 +116,16 @@ timeline-entry + timeline-entry {
 .print-only {
   display: inline !important;
 }
+
+/* ── QR code in sidebar ──────────────────────────────────── */
+.sidebar-qrcode {
+  display: block !important;
+  text-align: center;
+  margin-top: auto;
+}
+
+.sidebar-qrcode .qrcode {
+  width: 80%;
+  max-width: 150px;
+  height: auto;
+}

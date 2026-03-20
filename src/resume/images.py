@@ -86,7 +86,14 @@ ICON_TYPES = (
 )
 
 
-def generate_qr_code(file: Path):
+def generate_qr_code(file: Path, url: str, *, logo: Path | None = None):
+    """Generate a styled QR code linking to *url* and save it to *file*.
+
+    Args:
+        file: Destination path for the generated PNG image.
+        url: The URL to encode in the QR code.
+        logo: Optional logo image to embed in the centre of the QR code.
+    """
     qr = qrcode.QRCode(
         version=None,
         error_correction=qrcode.ERROR_CORRECT_H,
@@ -95,17 +102,18 @@ def generate_qr_code(file: Path):
         image_factory=StyledPilImage,
         mask_pattern=None,
     )
-    qr.add_data("https://axel.haustant.fr")
+    qr.add_data(url)
     qr.make(fit=True)
-    img = qr.make_image(
+    kwargs: dict = dict(
         color_mask=RadialGradiantColorMask(
             back_color=(255, 255, 255),
             edge_color=(0, 0, 0),
             center_color=(10, 99, 161),
         ),
         module_drawer=CircleModuleDrawer(),
-        embeded_image_path="images/logo-bg-white.png",
     )
+    if logo and logo.exists():
+        kwargs["embeded_image_path"] = str(logo)
+    img = qr.make_image(**kwargs)
+    file.parent.mkdir(parents=True, exist_ok=True)
     img.save(file)
-
-generate_qr_code(Path() / "images" / "qrcode.png")
