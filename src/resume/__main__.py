@@ -88,9 +88,9 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             out_file = out_dir / stylesheet.name
             out_file.write_bytes(stylesheet.read_bytes())
         out_dir = OUT / "images"
+        out_dir.mkdir(parents=True, exist_ok=True)
         for image in IMAGES.rglob("*.*"):
             out_file = out_dir / image.name
-            out_dir.parent.mkdir(parents=True, exist_ok=True)
             out_file.write_bytes(image.read_bytes())
         progress.update(task_assets, description="Assets copied", completed=1)
 
@@ -188,6 +188,7 @@ def experience(name: str, config: Config = Config()):
         i18n.set_locale(lang)
         details = Prompt.ask(f"Details ({lang})")
         file = DATA / lang / "experiences" / f"{name}.md"
+        file.parent.mkdir(parents=True, exist_ok=True)
         md = template.render(experience=data, details=details)
         file.write_text(md, encoding="utf-8")
 
@@ -218,6 +219,7 @@ def as_json_resume(locale: str | None = None, output: str | None = None, config:
     json_text = json.dumps(payload, ensure_ascii=False, indent=2)
     if output:
         out_path = Path(output)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json_text, encoding="utf-8")
         console.print(f"[green]Wrote {out_path}[/green]")
     else:
