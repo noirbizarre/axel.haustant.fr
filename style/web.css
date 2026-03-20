@@ -54,6 +54,19 @@ ul {
 }
 
 /* ══════════════════════════════════════════════════════════
+   ICONS – inline SVG icons
+   ══════════════════════════════════════════════════════════ */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════
    HEADER
    ══════════════════════════════════════════════════════════ */
 .header {
@@ -106,11 +119,24 @@ ul {
 }
 
 .header-contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
   margin-bottom: 0.65rem;
 }
 
 .header-contact-item:last-child {
   margin-bottom: 0;
+}
+
+.header-contact-item > .icon {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-text {
+  text-align: right;
 }
 
 .contact-label {
@@ -244,8 +270,16 @@ ul {
 
 /* Online profile links */
 .online-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   margin-bottom: 0.4rem;
   font-size: 0.75rem;
+}
+
+.online-item > .icon {
+  font-size: 0.9rem;
+  color: var(--primary-dark);
 }
 
 .online-item a {

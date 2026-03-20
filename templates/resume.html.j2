@@ -33,14 +33,22 @@
         <div class="header-contacts">
           {% if data.profile.phone %}
           <div class="header-contact-item">
-            <span class="contact-label">{{ _('Call Me') }}</span>
-            <a href="tel:{{ data.profile.phone.number }}" class="contact-value">{{ data.profile.phone.display }}</a>
+            <div class="contact-text">
+              {{ icon("phone") }}
+              <a href="tel:{{ data.profile.phone.number }}" class="contact-value">
+                {{ data.profile.phone.display }}
+              </a>
+            </div>
           </div>
           {% endif %}
           {% if data.profile.email %}
           <div class="header-contact-item">
-            <span class="contact-label">{{ _('Email') }}</span>
-            <a href="mailto:{{ data.profile.email }}" class="contact-value">{{ data.profile.email }}</a>
+            <div class="contact-text">
+              {{ icon("envelope") }}
+              <a href="mailto:{{ data.profile.email }}" class="contact-value">
+                {{ data.profile.email }}
+              </a>
+            </div>
           </div>
           {% endif %}
         </div>
@@ -121,11 +129,13 @@
             <h2 class="section-title">{{ _('Online Profile') }}</h2>
             {% for sn in data.profile.social %}
             <div class="online-item">
-              <a href="{{ sn.link }}" target="_blank" rel="noopener">{{ sn.display or sn.name }}</a>
+              {{ icon(sn.icon or sn.name | lower) }}
+              <a href="{{ sn.link }}" target="_blank" rel="noopener">{{ sn.name }}</a>
             </div>
             {% endfor %}
             {% for site in data.profile.websites %}
             <div class="online-item">
+              {{ icon("globe") }}
               <a href="{{ site.link }}" target="_blank" rel="noopener">{{ site.name }}</a>
             </div>
             {% endfor %}
@@ -136,7 +146,7 @@
 
         <!-- ─── TIMELINE (middle) ─── -->
         <main class="timeline-col">
-          <h2 class="section-title">{{ _('Timeline') }}</h2>
+          <h2 class="section-title">{{ _('Experience') }}</h2>
           <div class="timeline">
             {% for exp in data.experiences %}
             <div class="timeline-entry">

@@ -95,6 +95,10 @@ body {
   color: #ffffff;
 }
 
+.header-contact-item > .icon {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 
 /* Add spacing after page break */
 timeline-entry {

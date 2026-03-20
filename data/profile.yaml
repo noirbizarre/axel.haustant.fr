@@ -5,33 +5,33 @@ avatar: /images/me1.png
 
 email: axel@haustant.fr
 phone:
-  display: +33 (0)7 81 14 97 07
-  number: "+33781149707"
+  display: +33 (0)6 73 60 22 01
+  number: "+33673602201"
 
 websites:
   -
-    name: noirbizar.re
+    name: Blog
     link: https://noirbizar.re
-  -
-    name: Mon CV
-    link: https://axel.haustant.fr
+  # -
+  #   name: Mon CV
+  #   link: https://axel.haustant.fr
 
 social:
   -
-    name: github
+    name: GitHub
     icon: github
     link: http://github.com/noirbizarre
     display: github.com/noirbizarre
-  -
-    name: Twitter
-    icon: twitter
-    link: http://twitter.com/noirbizarre
-    display: '@noirbizarre'
   -
     name: LinkedIn
     icon: linkedin
     link: http://fr.linkedin.com/in/axelhaustant
     display: axelhaustant
+  -
+    name: Mastodon
+    icon: mastodon
+    link: https://fosstodon.org/@noirbizarre
+    display: '@noirbizarre'
 
 skills:
   -
@@ -45,4 +45,7 @@ skills:
     rate: 85
   -
     name: DevOps
+    rate: 85
+  -
+    name: AI
     rate: 85

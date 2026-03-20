@@ -1,7 +1,7 @@
 ---
 first_name: Axel
 last_name: Haustant
-tagline: Techlead, Développeur full stack
+tagline: Staff Engineer, Développeur full stack
 avatar: /images/me1.png
 
 email: axel@apihackers.com
@@ -26,11 +26,6 @@ social:
     icon: github
     link: http://github.com/noirbizarre
     display: github.com/noirbizarre
-  -
-    name: Twitter
-    icon: twitter
-    link: http://twitter.com/noirbizarre
-    display: '@noirbizarre'
   -
     name: LinkedIn
     icon: linkedin
