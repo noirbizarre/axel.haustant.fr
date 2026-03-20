@@ -77,9 +77,6 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
     languages = config.languages or ["en"]
     default_lang = config.default_language or languages[0]
 
-    env = templates.get_env(config)
-    template = env.get_template("resume.html.j2")
-
     with Progress(SpinnerColumn(), TextColumn("{task.description}")) as progress:
         task_i18n = progress.add_task("Compiling translations", total=None)
         i18n.compile_translations()
@@ -110,6 +107,9 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                 logo=IMAGES / "logo-bg-white.png",
             )
             progress.update(task_qr, description="QR code generated", completed=1)
+
+        env = templates.get_env(config)
+        template = env.get_template("resume.html.j2")
 
         for lang in languages:
             i18n.set_locale(lang)
