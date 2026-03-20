@@ -2,6 +2,7 @@ import json
 import sys
 
 from pathlib import Path
+from urllib.parse import urlparse
 
 import cyclopts
 
@@ -133,6 +134,13 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                 default_lang=default_lang, config=config, deploy=deploy, root=deploy.url
             )
         )
+
+        # CNAME for custom domain (GitHub Pages)
+        if deploy.url:
+            hostname = urlparse(deploy.url).hostname
+            if hostname and hostname != "localhost":
+                cname_file = OUT / "CNAME"
+                cname_file.write_text(hostname)
 
 
 @app.command
