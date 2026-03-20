@@ -150,20 +150,6 @@
           </section>
           {% endif %}
 
-          <!-- Rated Skills -->
-          {% set rated_skills = data.profile.skills or data.about.skills %}
-          {% if rated_skills %}
-          <section class="sidebar-section">
-            <h2 class="section-title">{{ _('Skills') }}</h2>
-            {% for s in rated_skills %}
-            <div class="skill-item">
-              <label>{{ s.name }}</label>
-              <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: {{ s.rate }}%"></div></div>
-            </div>
-            {% endfor %}
-          </section>
-          {% endif %}
-
           <!-- Online & Social -->
           {% if data.profile.social or data.profile.websites %}
           <section class="sidebar-section">
@@ -248,16 +234,16 @@
           </section>
           {% endif %}
 
-          <!-- Skill Groups -->
+          <!-- Skills -->
           {% if data.skill_groups %}
           <section class="rightcol-section">
-            <h2 class="section-title">{{ _('Technical Skills') }}</h2>
+            <h2 class="section-title">{{ _('Skills') }}</h2>
             {% for group in data.skill_groups %}
             <div class="skill-group">
-              <h3>{{ group.name }}</h3>
+              <h3>{{ _(group.name) }}</h3>
               {% for s in group.skills %}
               <div class="skill-item">
-                <label>{{ s.name }}</label>
+                <label>{{ _(s.name) }}</label>
                 <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: {{ s.level }}%"></div></div>
               </div>
               {% endfor %}

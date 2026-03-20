@@ -119,19 +119,12 @@ class SkillGroup(BaseModel):
     skills: list[Skill] = Field(default_factory=list)
 
     @classmethod
-    def from_data(cls, lang_dir: Path) -> list[SkillGroup]:
-        skill_group_dicts = load_yaml_list(lang_dir / "skills.yml")
-        skill_groups = [
+    def from_file(cls, yaml_file: Path) -> list[SkillGroup]:
+        skill_group_dicts = load_yaml_list(yaml_file)
+        return [
             SkillGroup(name=sg["name"], skills=[Skill(**s) for s in sg.get("skills", [])])
             for sg in skill_group_dicts
         ]
-        return skill_groups
-
-
-class SkillRated(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    name: str
-    rate: int = Field(ge=0, le=100)
 
 
 class Project(BaseModel):
@@ -182,7 +175,6 @@ class Profile(BaseModel):
     phone: Phone | None = None
     websites: list[Website] = Field(default_factory=list)
     social: list[SocialNetwork] = Field(default_factory=list)
-    skills: list[SkillRated] = Field(default_factory=list)
 
     @property
     def full_name(self) -> str:
@@ -204,7 +196,6 @@ class About(BaseModel):
     model_config = ConfigDict(extra="ignore")
     tagline: str | None = None
     languages: list[Language] = Field(default_factory=list)
-    skills: list[SkillRated] = Field(default_factory=list)
     content: str | None = None  # Raw markdown biography
     html: str | None = None  # Rendered HTML biography
 
@@ -243,7 +234,7 @@ class ResumeData(BaseModel):
             schools=School.from_file(lang_dir / "education.yml"),
             conferences=Conference.from_file(lang_dir / "conferences.yml"),
             expertise=Expertise.from_file(lang_dir / "expertise.yml"),
-            skill_groups=SkillGroup.from_data(lang_dir),
+            skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
             projects=Project.from_file(lang_dir / "projects.md")[0],
             profile=Profile.from_file(lang_dir.parent / "profile.yaml"),
             labels=labels,
@@ -268,11 +259,6 @@ _MD = MarkdownIt()
 
 
 def load_resume_for_language(lang_dir: Path) -> ResumeData:
-    skill_group_dicts = load_yaml_list(lang_dir / "skills.yml")
-    skill_groups = [
-        SkillGroup(name=sg["name"], skills=[Skill(**s) for s in sg.get("skills", [])])
-        for sg in skill_group_dicts
-    ]
     labels_path = lang_dir / "labels.yaml"
     labels = {}
     if labels_path.exists():
@@ -284,7 +270,7 @@ def load_resume_for_language(lang_dir: Path) -> ResumeData:
         schools=School.from_file(lang_dir / "education.yml"),
         conferences=Conference.from_file(lang_dir / "conferences.yml"),
         expertise=Expertise.from_file(lang_dir / "expertise.yml"),
-        skill_groups=skill_groups,
+        skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
         projects=Project.from_file(lang_dir / "projects.md")[0],
         profile=Profile.from_file(lang_dir.parent / "profile.yaml"),
         labels=labels,

@@ -110,14 +110,6 @@ class SkillEntry(BaseModel):
     @classmethod
     def list_from_data(cls, data: ResumeData) -> list[SkillEntry]:
         skills: list[SkillEntry] = []
-        for skill in data.about.skills:
-            skills.append(
-                cls(
-                    name=skill.name,
-                    level=str(skill.rate),
-                    keywords=[],
-                )
-            )
         for group in data.skill_groups:
             skills.append(
                 cls(

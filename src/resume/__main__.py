@@ -63,7 +63,7 @@ def dev(port: int = 5000, *, config: Config = Config()):
     server.watch(DATA, reload)
     server.watch(STYLE, reload)
     server.watch(IMAGES, reload)
-    server.watch(i18n.directory, reload)
+    server.watch(f"{i18n.directory}/**/*.po", reload)
     server.watch(templates.directory, reload)
     server.watch("pyproject.toml", reload)
 

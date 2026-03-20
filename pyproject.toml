@@ -23,6 +23,9 @@ dependencies = [
 [project.scripts]
 resume = "resume.__main__:app"
 
+[project.entry-points."babel.extractors"]
+yaml_skills = "resume.babel_yaml:extract_skills"
+
 [dependency-groups]
 dev = [
     "livereload<3.0.0,>=2.6.3",

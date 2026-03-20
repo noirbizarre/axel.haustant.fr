@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-20 21:10+0100\n"
+"POT-Creation-Date: 2026-03-20 21:58+0100\n"
 "PO-Revision-Date: 2026-03-20 21:10+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -17,6 +17,142 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
+
+#: data/skills.yml:1
+msgid "Programming"
+msgstr "Programmation"
+
+#: data/skills.yml:1
+msgid "Python"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Javascript"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "HTML/CSS"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Golang"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Java/J2EE"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "php"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "SQL (PLSQL, PLpgSQL..)"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Methodology"
+msgstr "Méthodologie"
+
+#: data/skills.yml:1
+msgid "Agility"
+msgstr "Agilité"
+
+#: data/skills.yml:1
+msgid "DevOps"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Lean"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Test driven development"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Continuous Delivery"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "AI"
+msgstr "IA"
+
+#: data/skills.yml:1
+msgid "Model training"
+msgstr "Entraînement de modèles"
+
+#: data/skills.yml:1
+msgid "Orchestration/Agentic workflows"
+msgstr "Orchestration/Workflows agentiques"
+
+#: data/skills.yml:1
+msgid "Code assistant"
+msgstr "Assistant de code"
+
+#: data/skills.yml:1
+msgid "Databases/Search"
+msgstr "Base de données/Recherche"
+
+#: data/skills.yml:1
+msgid "MongoDB"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "PostgreSQL/PostGIS"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "MySQL"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Redis"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "ElasticSearch"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "SOLR"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "System administration"
+msgstr "Administration système"
+
+#: data/skills.yml:1
+msgid "Unix/Linux"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Bash (Scripting)"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Ansible"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Amazon Web Services"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Docker (and ecosystem)"
+msgstr "Docker (et écosystème)"
+
+#: data/skills.yml:1
+msgid "Misc. (tools)"
+msgstr "Divers (outils)"
+
+#: data/skills.yml:1
+msgid "Jenkins"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "git"
+msgstr ""
 
 #: templates/resume.html.j2:106
 msgid "Personal"
@@ -38,30 +174,30 @@ msgstr "Téléphone"
 msgid "Education"
 msgstr "Formation"
 
-#: templates/resume.html.j2:157
-msgid "Skills"
-msgstr "Compétences"
-
-#: templates/resume.html.j2:170
+#: templates/resume.html.j2:156
 msgid "Online Profile"
 msgstr "Profil en ligne"
 
-#: templates/resume.html.j2:206
+#: templates/resume.html.j2:192
 msgid "Experience"
 msgstr "Expérience"
 
-#: templates/resume.html.j2:231
+#: templates/resume.html.j2:217
 msgid "About Me"
 msgstr "À propos"
 
-#: templates/resume.html.j2:239
+#: templates/resume.html.j2:225
 msgid "Expertise"
 msgstr "Expertise"
 
-#: templates/resume.html.j2:254
-msgid "Technical Skills"
-msgstr "Compétences techniques"
+#: templates/resume.html.j2:240
+msgid "Skills"
+msgstr "Compétences"
 
-#: templates/resume.html.j2:272
+#: templates/resume.html.j2:258
 msgid "Projects"
 msgstr "Projets"
+
+#~ msgid "Technical Skills"
+#~ msgstr "Compétences techniques"
+

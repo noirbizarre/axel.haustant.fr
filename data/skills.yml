@@ -1,6 +1,6 @@
 ---
 -
-  name: Programmation
+  name: Programming
   skills:
   -
     name: Python
@@ -40,6 +40,18 @@
     level: 90
   -
     name: Continuous Delivery
+    level: 90
+-
+  name: AI
+  skills:
+  -
+    name: Model training
+    level: 80
+  -
+    name: Orchestration/Agentic workflows
+    level: 85
+  -
+    name: Code assistant
     level: 90
 -
   name: Databases/Search
@@ -89,29 +101,3 @@
   -
     name: git
     level: 95
-# Systèmes d'exploitation
-#
-# Unix/Linux (Debian, Ubuntu, RHEL, Centos, OpenWRT...), Windows, MacOSX,
-# Langages de programmation
-#
-# Java/J2EE, Python, JavaScript, HTML/HTML5, CSS, Ruby, Flex/ActionScript3, bash, SQL et dérivés (PLSQL, PLpgSQL,...), XML
-# Frameworks
-#
-# Spring (et ses composants), Hibernate, Jersey, Django/GeoDjango,
-# Ember.js, Backbone.js, jQuery, Swiz, PureMVC, Twitter Bootstrap, Celery
-# Base de données
-#
-# PostgreSQL/PostGIS, MySQL, Oracle/Oracle Spatial, MongoDB
-# Serveurs
-#
-# nginx, cherokee, apache httpd, lighttpd, gevent, tornado, uwsgi, gunicorn,
-# tomcat, jetty, JBoss, Jonas, RabbitMQ, SOLR
-# Tests
-#
-# JUnit, Unitils, DBUnit, unittest, nose, jasmine, QUnit, mock, Mockito, Selenium
-# Autres outils
-#
-# Capistrano, Fabric, Sphinx, Jenkins, Sonar, Git, Mercurial, Subversion, Maven, Ant, rake, PhantomJS, GDAL
-# Cloud
-#
-# Amazon Web Services (EC2, S3, …), Heroku

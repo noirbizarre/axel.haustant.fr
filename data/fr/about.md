@@ -44,20 +44,6 @@ languages:
     name: Espagnol
     level: Professionel
 
-skills:
-  -
-    name: Code
-    rate: 95
-  -
-    name: Design
-    rate: 75
-  -
-    name: Agilité
-    rate: 85
-  -
-    name: DevOps
-    rate: 85
-
 
 ---
 
