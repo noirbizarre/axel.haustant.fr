@@ -106,9 +106,9 @@ def generate_qr_code(file: Path, url: str, *, logo: Path | None = None):
     qr.make(fit=True)
     kwargs: dict = dict(
         color_mask=RadialGradiantColorMask(
-            back_color=(255, 255, 255),
-            edge_color=(0, 0, 0),
-            center_color=(10, 99, 161),
+            back_color=(255, 255, 255, 0),
+            edge_color=(0, 0, 0, 255),
+            center_color=(10, 99, 161, 255),
         ),
         module_drawer=CircleModuleDrawer(),
     )
