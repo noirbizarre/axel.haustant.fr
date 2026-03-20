@@ -173,7 +173,7 @@ ul {
    ══════════════════════════════════════════════════════════ */
 .body {
   display: grid;
-  grid-template-columns: 280px 1fr 320px;
+  grid-template-columns: 300px 1fr 300px;
 }
 
 /* ── Shared: section title ───────────────────────────────── */
@@ -332,7 +332,7 @@ ul {
 
 /* Year pill badge */
 .timeline-year-badge {
-  flex: 0 0 75px;
+  flex: 0 0 50px;
   height: 28px;
   background: var(--primary);
   color: #ffffff;

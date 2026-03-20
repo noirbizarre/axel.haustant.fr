@@ -72,11 +72,25 @@ body {
 }
 
 .sidebar {
-  width: 23% !important;
+  width: 25% !important;
 }
 
 .rightcol {
-  width: 27% !important;
+  width: 25% !important;
+}
+
+.timeline-year-badge {
+  flex: 0 0 40px;
+  height: 15px;
+  font-size: 0.5rem;
+}
+
+/* Small dot connecting badge to line */
+.timeline-content::before {
+  top: 18px;
+  left: -4px;
+  width: 6px;
+  height: 6px;
 }
 
 /* ── Avoid orphaned entries mid-page ─────────────────────── */
@@ -84,8 +98,7 @@ body {
 .edu-entry,
 .skill-item,
 .expertise-group,
-.skill-group,
-.rightcol-section {
+.skill-group {
   break-inside: avoid;
 }
 
@@ -101,11 +114,23 @@ body {
 
 
 /* Add spacing after page break */
-timeline-entry {
+.timeline-entry {
   padding-top: 1rem;
 }
 
-timeline-entry + timeline-entry {
+.timeline-entry + .timeline-entry {
+  padding-top: 0rem;
+}
+
+.skill-group {
+  margin-bottom: 0;
+}
+
+.skill-group h3 {
+  padding-top: 1rem;
+}
+
+.section-title + .skill-group h3 {
   padding-top: 0rem;
 }
 

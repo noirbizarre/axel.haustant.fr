@@ -101,34 +101,13 @@
         <!-- ─── LEFT SIDEBAR ─── -->
         <aside class="sidebar">
 
-          <!-- Personal -->
+          <!-- About Me -->
+          {% if data.about.html %}
           <section class="sidebar-section">
-            <h2 class="section-title">{{ _('Personal') }}</h2>
-            <table class="info-table">
-              <tr>
-                <th>{{ _('Name') }}</th>
-                <td>{{ data.profile.full_name }}</td>
-              </tr>
-              {% if data.profile.email %}
-              <tr>
-                <th>{{ _('Email') }}</th>
-                <td><a href="mailto:{{ data.profile.email }}">{{ data.profile.email }}</a></td>
-              </tr>
-              {% endif %}
-              {% if data.profile.phone %}
-              <tr>
-                <th>{{ _('Phone') }}</th>
-                <td><a href="tel:{{ data.profile.phone.number }}">{{ data.profile.phone.display }}</a></td>
-              </tr>
-              {% endif %}
-              {% for lang_info in data.about.languages %}
-              <tr>
-                <th>{{ lang_info.name }}</th>
-                <td>{{ lang_info.level }}</td>
-              </tr>
-              {% endfor %}
-            </table>
+            <h2 class="section-title">{{ _('About Me') }}</h2>
+            <div class="about-text">{{ data.about.html | safe }}</div>
           </section>
+          {% endif %}
 
           <!-- Education -->
           {% if data.schools %}
@@ -149,6 +128,19 @@
             {% endfor %}
           </section>
           {% endif %}
+
+          <!-- Languages -->
+          <section class="sidebar-section">
+            <h2 class="section-title">{{ _('Languages') }}</h2>
+            <table class="info-table">
+              {% for lang_info in data.about.languages %}
+              <tr>
+                <th>{{ lang_info.name }}</th>
+                <td>{{ lang_info.level }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </section>
 
           <!-- Online & Social -->
           {% if data.profile.social or data.profile.websites %}
@@ -210,14 +202,6 @@
 
         <!-- ─── RIGHT COLUMN ─── -->
         <aside class="rightcol">
-
-          <!-- About Me -->
-          {% if data.about.html %}
-          <section class="rightcol-section">
-            <h2 class="section-title">{{ _('About Me') }}</h2>
-            <div class="about-text">{{ data.about.html | safe }}</div>
-          </section>
-          {% endif %}
 
           <!-- Expertise -->
           {% if data.expertise %}

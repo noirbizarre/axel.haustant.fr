@@ -155,20 +155,8 @@ msgid "git"
 msgstr ""
 
 #: templates/resume.html.j2:106
-msgid "Personal"
-msgstr "Personnel"
-
-#: templates/resume.html.j2:109
-msgid "Name"
-msgstr "Nom"
-
-#: templates/resume.html.j2:114
-msgid "Email"
-msgstr "Email"
-
-#: templates/resume.html.j2:120
-msgid "Phone"
-msgstr "Téléphone"
+msgid "Languages"
+msgstr "Langues"
 
 #: templates/resume.html.j2:136
 msgid "Education"
