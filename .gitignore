@@ -180,3 +180,5 @@ inspiration/
 
 # Generated build artifacts
 images/qrcode.png
+
+!mise.toml

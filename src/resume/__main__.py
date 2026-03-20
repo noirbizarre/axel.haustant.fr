@@ -81,6 +81,10 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
     template = env.get_template("resume.html.j2")
 
     with Progress(SpinnerColumn(), TextColumn("{task.description}")) as progress:
+        task_i18n = progress.add_task("Compiling translations", total=None)
+        i18n.compile_translations()
+        progress.update(task_i18n, description="Translations compiled", completed=1)
+
         task_assets = progress.add_task("Copying assets", total=None)
         out_dir = OUT / "style"
         out_dir.mkdir(parents=True, exist_ok=True)

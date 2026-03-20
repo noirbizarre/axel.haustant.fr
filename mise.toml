@@ -1,0 +1,20 @@
+[env]
+_.python.venv = { path = ".venv", create = true }
+
+[tools]
+python = "3.14"
+
+[tasks."i18n:extract"]
+description = "Extract and update translatable strings"
+run = "uv run resume i18n extract"
+sources = ["templates/**/*.j2", "src/**/*.py", "babel.cfg"]
+outputs = ["locales/resume.pot"]
+
+[tasks.build]
+description = "Build the site"
+run = "uv run resume build"
+
+[tasks.dev]
+description = "Run the live-reload dev server"
+run = "uv run resume dev"
+

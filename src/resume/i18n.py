@@ -47,10 +47,17 @@ def extract(config: Config = Config()):
     # Create or update .pot Catalog file
     subprocess.run(f"pybabel extract -F {mapping_file} -o {directory}/{domain}.pot .", shell=True)
     # Update .po files for each language
-    subprocess.run(f"pybabel update -i {directory}/{domain}.pot -d {directory}", shell=True)
+    subprocess.run(
+        f"pybabel update -D {domain} -i {directory}/{domain}.pot -d {directory}", shell=True
+    )
+
+
+def compile_translations():
+    """Compile .po files into .mo binary catalogs"""
+    subprocess.run(f"pybabel compile -D {domain} -d {directory}", shell=True)
 
 
 @app.command
 def compile(config: Config = Config()):
     """Compile translated strings"""
-    subprocess.run(f"pybabel compile -d {directory}", shell=True)
+    compile_translations()
