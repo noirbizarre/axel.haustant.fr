@@ -56,4 +56,7 @@ def get_env(config: Config) -> Environment:
     )
     env.install_gettext_translations(ContextTranslations(config.languages))
     env.globals["icon"] = _make_icon_helper(config.root)
+    env.filters["strip_protocol"] = (
+        lambda url: str(url).replace("https://", "").replace("http://", "").strip("/")
+    )
     return env

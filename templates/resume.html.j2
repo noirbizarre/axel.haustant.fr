@@ -148,13 +148,19 @@
             {% for sn in data.profile.social %}
             <div class="online-item">
               {{ icon(sn.icon or sn.name | lower) }}
-              <a href="{{ sn.link }}" target="_blank" rel="noopener">{{ sn.name }}</a>
+              <a href="{{ sn.link }}" target="_blank" rel="noopener">
+                <span class="no-print">{{ sn.name }}</span>
+                <span class="print-only">{{ sn.link | strip_protocol }}</span>
+              </a>
             </div>
             {% endfor %}
             {% for site in data.profile.websites %}
             <div class="online-item">
               {{ icon("globe") }}
-              <a href="{{ site.link }}" target="_blank" rel="noopener">{{ site.name }}</a>
+              <a href="{{ site.link }}" target="_blank" rel="noopener">
+                <span class="no-print">{{ site.name }}</span>
+                <span class="print-only">{{ site.link | strip_protocol }}</span>
+              </a>
             </div>
             {% endfor %}
           </section>

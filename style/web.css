@@ -159,6 +159,11 @@ ul {
   text-decoration: underline;
 }
 
+.languages {
+  text-transform: uppercase;
+}
+
+
 /* ══════════════════════════════════════════════════════════
    BODY – CSS Grid three-column layout
    (Grid has better WeasyPrint support than Flexbox for columns)
@@ -284,6 +289,11 @@ ul {
 
 .online-item a {
   color: var(--primary);
+}
+
+/* Hide print-only elements on screen */
+.print-only {
+  display: none;
 }
 
 /* ══════════════════════════════════════════════════════════

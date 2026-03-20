@@ -112,3 +112,7 @@ timeline-entry + timeline-entry {
 .no-print {
   display: none !important;
 }
+
+.print-only {
+  display: inline !important;
+}
