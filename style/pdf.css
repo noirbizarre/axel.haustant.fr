@@ -7,6 +7,16 @@
 @page {
   size: A4 portrait;
   margin: 0;
+  /* padding-top on the @page box is set by the layout engine itself,
+     before any content is placed. It is the only mechanism WeasyPrint
+     reliably applies after a page break — all element-level spacing
+     (margin / padding / border / ::before height) is discarded for
+     the first box on a new page. */
+}
+
+/* First page: the header already provides visual top spacing. */
+@page :first {
+  padding-top: 0;
 }
 
 /* With zero page margins the resume box needs no outer whitespace. */

@@ -286,7 +286,7 @@ ul {
   border-radius: 14px;
   margin-right: 1rem;
   flex-shrink: 0;
-  margin-top: 0.1rem;
+  margin-top: 1rem;
   letter-spacing: 1px;
 }
 
@@ -296,7 +296,7 @@ ul {
 .timeline-content {
   flex: 1;
   border-left: 2px solid var(--border);
-  padding: 0 0 1.4rem 1rem;
+  padding: 1rem 0 0.1rem 1rem;
   position: relative;
   min-width: 0;
 }
@@ -306,16 +306,15 @@ ul {
   content: '';
   position: absolute;
   left: -5px;
-  top: 8px;
+  top: 30px;
   width: 8px;
   height: 8px;
   background: var(--primary);
   border-radius: 50%;
 }
 
-/* Last entry: no line or padding below */
+/* Last entry: no extra padding below, line still runs alongside the content */
 .timeline-entry:last-child .timeline-content {
-  border-left-color: transparent;
   padding-bottom: 0;
 }
 
@@ -360,6 +359,10 @@ ul {
 
 .rightcol-section {
   margin-bottom: 1.5rem;
+}
+
+.rightcol-section:not(:first-child) {
+  margin-top: 1rem;
 }
 
 .rightcol-section:last-child {

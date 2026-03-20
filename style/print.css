@@ -3,17 +3,17 @@
    NOT loaded for WeasyPrint PDF (pdf.css overrides @page there).
    ═══════════════════════════════════════════════════════════ */
 
-/* Pages 2, 3, … get a generous top margin so content doesn't
-   start right at the paper edge after a page break. */
+/* @page padding-top creates breathing room at the top of every
+   page (including after page breaks) at the layout-engine level,
+   which is the only mechanism browsers/WeasyPrint apply before
+   any content is placed on the new page. */
 @page {
   size: A4 portrait;
-  /* margin: 3cm 1cm 1cm; */
-  margin-top: 1cm;
 }
 
-/* First page: smaller top margin — the header sits naturally at top. */
+/* First page: header already sits at the top, no extra gap needed. */
 @page :first {
-  margin-top: 0cm;
+  padding-top: 0;
 }
 
 /* ── Ensure backgrounds & colors print ───────────────────── */
@@ -93,4 +93,14 @@ body {
 .header a,
 .contact-value {
   color: #ffffff;
+}
+
+
+/* Add spacing after page break */
+timeline-entry {
+  padding-top: 1rem;
+}
+
+timeline-entry + timeline-entry {
+  padding-top: 0rem;
 }
