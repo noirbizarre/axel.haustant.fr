@@ -6,7 +6,7 @@ from pathlib import Path
 import yaml
 
 from markdown_it import MarkdownIt
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl, validator
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
 FRONT_MATTER_SPLIT = re.compile(r"^---\s*$", re.MULTILINE)
 
@@ -48,7 +48,8 @@ class Experience(BaseModel):
     content: str | None = None  # Raw markdown body
     html: str | None = None  # Rendered HTML
 
-    @validator("start", "end", pre=True)
+    @field_validator("start", "end", mode="before")
+    @classmethod
     def _parse_dates(cls, v):
         if v in (None, ""):
             return None
@@ -85,7 +86,6 @@ class School(BaseModel):
         return [cls(**d) for d in load_yaml_list(yaml_file)]
 
 
-
 class Conference(BaseModel):
     model_config = ConfigDict(extra="ignore")
     name: str
@@ -97,7 +97,6 @@ class Conference(BaseModel):
         return [cls(**d) for d in load_yaml_list(yaml_file)]
 
 
-
 class Expertise(BaseModel):
     model_config = ConfigDict(extra="ignore")
     name: str
@@ -106,7 +105,6 @@ class Expertise(BaseModel):
     @classmethod
     def from_file(cls, yaml_file: Path) -> list[Expertise]:
         return [cls(**d) for d in load_yaml_list(yaml_file)]
-
 
 
 class Skill(BaseModel):
@@ -128,6 +126,7 @@ class SkillGroup(BaseModel):
             for sg in skill_group_dicts
         ]
         return skill_groups
+
 
 class SkillRated(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -188,6 +187,12 @@ class Profile(BaseModel):
     @property
     def full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
+
+    @property
+    def pdf_filename(self) -> str:
+        first = self.first_name.lower().replace(" ", "-")
+        last = self.last_name.lower().replace(" ", "-")
+        return f"{first}.{last}.pdf"
 
     @classmethod
     def from_file(cls, yaml_file: Path) -> Profile:

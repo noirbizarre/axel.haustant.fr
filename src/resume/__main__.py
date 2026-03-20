@@ -104,6 +104,15 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             )
             progress.update(task_lang, description=f"Built {lang}", completed=1)
 
+            # Generate PDF
+            task_pdf = progress.add_task(f"Generating PDF for {lang}", total=None)
+            pdf_html = template.render(
+                lang=lang, data=dataset, config=config, deploy=deploy, root=".", pdf=True
+            )
+            pdf_path = out_lang_dir / dataset.profile.pdf_filename
+            HTML(string=pdf_html, base_url=config.root).write_pdf(str(pdf_path))
+            progress.update(task_pdf, description=f"PDF generated: {pdf_path}", completed=1)
+
         # Root redirect to default language
         root_index = OUT / "index.html"
         redirect_template = env.get_template("redirect.html.j2")
@@ -197,9 +206,10 @@ def pdf(
     html = template.render(
         lang=locale, data=dataset, config=config, deploy=deploy, root=".", pdf=True
     )
-    OUT.mkdir(parents=True, exist_ok=True)
-    pdf_name = output or f"resume-{locale}.pdf"
-    out_path = OUT / pdf_name
+    out_lang_dir = OUT / locale
+    out_lang_dir.mkdir(parents=True, exist_ok=True)
+    pdf_name = output or dataset.profile.pdf_filename
+    out_path = out_lang_dir / pdf_name
 
     with Progress(SpinnerColumn(), TextColumn("{task.description}")) as progress:
         task = progress.add_task(f"Rendering PDF for {locale}", total=None)
