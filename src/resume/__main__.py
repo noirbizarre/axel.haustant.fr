@@ -142,7 +142,7 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                 favicons=ICON_TYPES,
             )
             pdf_path = out_lang_dir / dataset.profile.pdf_filename
-            HTML(string=pdf_html, base_url=config.root).write_pdf(str(pdf_path))
+            HTML(string=pdf_html, base_url=str(OUT)).write_pdf(str(pdf_path))
             progress.update(task_pdf, description=f"PDF generated: {pdf_path}", completed=1)
 
         # Root redirect to default language
