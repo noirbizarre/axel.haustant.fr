@@ -50,8 +50,6 @@ DATA = ROOT / "data"
 STYLE = ROOT / "style"
 IMAGES = ROOT / "images"
 OUT = ROOT / "site"
-SETTINGS_FILE = DATA / "settings.yaml"
-
 app = App(
     config=[
         cyclopts.config.Env("", command=False),
@@ -65,7 +63,6 @@ app = App(
 )
 app.command(i18n.app)
 console = Console()
-error_console = Console(stderr=True)
 
 
 @app.command

@@ -55,12 +55,6 @@ class Experience(BaseModel):
             return None
         return parse_year_or_year_month(str(v))
 
-    @property
-    def duration_months(self) -> int | None:
-        if self.start and self.end:
-            return (self.end.year - self.start.year) * 12 + (self.end.month - self.start.month) + 1
-        return None
-
     @classmethod
     def from_files(cls, dir_path: Path) -> list[Experience]:
         experiences = []
@@ -196,24 +190,6 @@ class ResumeData(BaseModel):
     profile: Profile
     labels: dict[str, str] = Field(default_factory=dict)
 
-    @classmethod
-    def from_data(cls, lang_dir: Path) -> ResumeData:
-        labels_path = lang_dir / "labels.yaml"
-        labels = {}
-        if labels_path.exists():
-            labels_raw = labels_path.read_text(encoding="utf-8")
-            labels = yaml.safe_load(labels_raw) or {}
-        data = cls(
-            about=About.from_file(lang_dir / "about.md"),
-            experiences=Experience.from_files(lang_dir / "experiences"),
-            schools=School.from_file(lang_dir / "education.yml"),
-            conferences=Conference.from_file(lang_dir / "conferences.yml"),
-            skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
-            profile=Profile.from_file(lang_dir.parent / "profile.yaml"),
-            labels=labels,
-        )
-        return data
-
 
 # ---------------------------
 # Loading helpers
@@ -247,17 +223,3 @@ def load_resume_for_language(lang_dir: Path) -> ResumeData:
         labels=labels,
     )
     return data
-
-
-def load_all(data_root: Path) -> dict[str, ResumeData]:
-    """
-    Load datasets for each language directory (e.g. 'en', 'fr').
-    """
-    result = {}
-    for lang_dir in data_root.iterdir():
-        if lang_dir.is_dir():
-            try:
-                result[lang_dir.name] = load_resume_for_language(lang_dir)
-            except Exception as exc:
-                print(f"Failed loading {lang_dir.name}: {exc}")
-    return result

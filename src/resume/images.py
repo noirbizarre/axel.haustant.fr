@@ -146,18 +146,8 @@ SOCIAL_PREVIEW_WIDTH = 1200
 SOCIAL_PREVIEW_HEIGHT = 630
 
 # Brand colours matching style/web.css
-_PRIMARY = (91, 137, 180)  # #5b89b4
 _PRIMARY_DARK = (61, 104, 145)  # #3d6891
 _PRIMARY_LIGHT = (123, 163, 200)  # #7ba3c8
-
-# Font search order — try PT Sans first, fall back to common sans-serif fonts.
-_FONT_CANDIDATES = [
-    "PT Sans",
-    "Liberation Sans",
-    "DejaVu Sans",
-    "Noto Sans",
-    "Arial",
-]
 
 _FONT_BOLD_CANDIDATES = [
     "/usr/share/fonts/liberation/LiberationSans-Bold.ttf",
