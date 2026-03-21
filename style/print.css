@@ -114,14 +114,6 @@ body {
 
 
 /* Add spacing after page break */
-.timeline-entry {
-  padding-top: 1rem;
-}
-
-.timeline-entry + .timeline-entry {
-  padding-top: 0rem;
-}
-
 .skill-group {
   margin-bottom: 0;
 }
