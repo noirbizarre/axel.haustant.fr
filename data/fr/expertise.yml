@@ -11,6 +11,7 @@
   lines:
   - Gestion de configuration
   - Déploiement
+  - Workflows agentiques
 -
   name: Méthodologie
   lines:

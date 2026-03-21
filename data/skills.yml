@@ -6,22 +6,22 @@
     name: Python
     level: 95
   -
-    name: Javascript
+    name: Javascript / TypeScript
     level: 90
   -
     name: HTML/CSS
     level: 85
   -
+    name: Rust
+    level: 65
+  -
     name: Golang
-    level: 75
+    level: 55
   -
     name: Java/J2EE
-    level: 75
+    level: 65
   -
-    name: php
-    level: 75
-  -
-    name: SQL (PLSQL, PLpgSQL..)
+    name: SQL
     level: 75
 -
   name: Methodology
@@ -46,21 +46,21 @@
   skills:
   -
     name: Model training
-    level: 80
+    level: 50
   -
-    name: Orchestration/Agentic workflows
-    level: 85
+    name: Orchestration / Agentic workflows
+    level: 75
   -
     name: Code assistant
     level: 90
 -
-  name: Databases/Search
+  name: Databases
   skills:
   -
     name: MongoDB
     level: 90
   -
-    name: PostgreSQL/PostGIS
+    name: PostgreSQL / PostGIS
     level: 85
   -
     name: MySQL
@@ -75,29 +75,69 @@
     name: SOLR
     level: 70
 -
+  name: Queueing / Messaging
+  skills:
+  -
+    name: RabbitMQ
+    level: 80
+  -
+    name: NATS
+    level: 70
+-
+  name: Frameworks
+  skills:
+    -
+      name: Flask
+      level: 90
+    -
+      name: FastAPI
+      level: 90
+    -
+      name: FastMCP
+      level: 80
+    -
+      name: Pydantic
+      level: 90
+    -
+      name: SQLAlchemy
+      level: 80
+    -
+      name: Django
+      level: 75
+    -
+      name: Vue.js
+      level: 75
+    -
+      name: React
+      level: 50
+
+-
   name: System administration
   skills:
   -
-    name: Unix/Linux
+    name: Linux
     level: 95
   -
-    name: Bash (Scripting)
-    level: 85
+    name: Kubernetes
+    level: 80
+  -
+    name: Docker
+    level: 95
   -
     name: Ansible
     level: 90
   -
-    name: Amazon Web Services
-    level: 80
-  -
-    name: Docker (and ecosystem)
-    level: 95
+    name: Shell (Scripting)
+    level: 85
 -
-  name: Misc. (tools)
+  name: Automation / CI-CD
   skills:
   -
     name: Jenkins
-    level: 90
+    level: 80
   -
-    name: git
+    name: GitHub Actions
     level: 95
+  -
+    name: Gitlab CI
+    level: 80

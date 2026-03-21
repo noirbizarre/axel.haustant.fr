@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-20 21:58+0100\n"
+"POT-Creation-Date: 2026-03-21 02:06+0100\n"
 "PO-Revision-Date: 2026-03-20 21:10+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -27,11 +27,15 @@ msgid "Python"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "Javascript"
+msgid "Javascript / TypeScript"
 msgstr ""
 
 #: data/skills.yml:1
 msgid "HTML/CSS"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Rust"
 msgstr ""
 
 #: data/skills.yml:1
@@ -43,11 +47,7 @@ msgid "Java/J2EE"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "php"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "SQL (PLSQL, PLpgSQL..)"
+msgid "SQL"
 msgstr ""
 
 #: data/skills.yml:1
@@ -83,23 +83,23 @@ msgid "Model training"
 msgstr "Entraînement de modèles"
 
 #: data/skills.yml:1
-msgid "Orchestration/Agentic workflows"
-msgstr "Orchestration/Workflows agentiques"
+msgid "Orchestration / Agentic workflows"
+msgstr "Orchestration / Workflows agentiques"
 
 #: data/skills.yml:1
 msgid "Code assistant"
 msgstr "Assistant de code"
 
 #: data/skills.yml:1
-msgid "Databases/Search"
-msgstr "Base de données/Recherche"
+msgid "Databases"
+msgstr "Bases de données"
 
 #: data/skills.yml:1
 msgid "MongoDB"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "PostgreSQL/PostGIS"
+msgid "PostgreSQL / PostGIS"
 msgstr ""
 
 #: data/skills.yml:1
@@ -119,15 +119,67 @@ msgid "SOLR"
 msgstr ""
 
 #: data/skills.yml:1
+msgid "Queueing / Messaging"
+msgstr "File d'attente / Messagerie"
+
+#: data/skills.yml:1
+msgid "RabbitMQ"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "NATS"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Frameworks"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Flask"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "FastAPI"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "FastMCP"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Pydantic"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "SQLAlchemy"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Django"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Vue.js"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "React"
+msgstr ""
+
+#: data/skills.yml:1
 msgid "System administration"
 msgstr "Administration système"
 
 #: data/skills.yml:1
-msgid "Unix/Linux"
+msgid "Linux"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "Bash (Scripting)"
+msgid "Kubernetes"
+msgstr ""
+
+#: data/skills.yml:1
+msgid "Docker"
 msgstr ""
 
 #: data/skills.yml:1
@@ -135,57 +187,87 @@ msgid "Ansible"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "Amazon Web Services"
+msgid "Shell (Scripting)"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "Docker (and ecosystem)"
-msgstr "Docker (et écosystème)"
-
-#: data/skills.yml:1
-msgid "Misc. (tools)"
-msgstr "Divers (outils)"
+msgid "Automation / CI-CD"
+msgstr "Automatisation / CI-CD"
 
 #: data/skills.yml:1
 msgid "Jenkins"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "git"
+msgid "GitHub Actions"
 msgstr ""
 
-#: templates/resume.html.j2:106
-msgid "Languages"
-msgstr "Langues"
+#: data/skills.yml:1
+msgid "Gitlab CI"
+msgstr ""
 
-#: templates/resume.html.j2:136
-msgid "Education"
-msgstr "Formation"
-
-#: templates/resume.html.j2:156
-msgid "Online Profile"
-msgstr "Profil en ligne"
-
-#: templates/resume.html.j2:192
-msgid "Experience"
-msgstr "Expérience"
-
-#: templates/resume.html.j2:217
+#: templates/resume.html.j2:107
 msgid "About Me"
 msgstr "À propos"
 
-#: templates/resume.html.j2:225
+#: templates/resume.html.j2:115
+msgid "Education"
+msgstr "Formation"
+
+#: templates/resume.html.j2:134
+msgid "Languages"
+msgstr "Langues"
+
+#: templates/resume.html.j2:148
+msgid "Online Profile"
+msgstr "Profil en ligne"
+
+#: templates/resume.html.j2:184
+msgid "Experience"
+msgstr "Expérience"
+
+#: templates/resume.html.j2:209
 msgid "Expertise"
 msgstr "Expertise"
 
-#: templates/resume.html.j2:240
+#: templates/resume.html.j2:224
 msgid "Skills"
 msgstr "Compétences"
 
-#: templates/resume.html.j2:258
+#: templates/resume.html.j2:242
 msgid "Projects"
 msgstr "Projets"
 
 #~ msgid "Technical Skills"
 #~ msgstr "Compétences techniques"
+
+#~ msgid "Javascript"
+#~ msgstr ""
+
+#~ msgid "php"
+#~ msgstr ""
+
+#~ msgid "SQL (PLSQL, PLpgSQL..)"
+#~ msgstr ""
+
+#~ msgid "PostgreSQL/PostGIS"
+#~ msgstr ""
+
+#~ msgid "Unix/Linux"
+#~ msgstr ""
+
+#~ msgid "Bash (Scripting)"
+#~ msgstr ""
+
+#~ msgid "Amazon Web Services"
+#~ msgstr ""
+
+#~ msgid "Docker (and ecosystem)"
+#~ msgstr "Docker (et écosystème)"
+
+#~ msgid "Misc. (tools)"
+#~ msgstr "Divers (outils)"
+
+#~ msgid "git"
+#~ msgstr ""
 

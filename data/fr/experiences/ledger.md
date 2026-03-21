@@ -8,6 +8,6 @@ role: Staff Engineer
 - Intégration de blockchains dans la solution B2B
 - Lead technique sur le backend Python de la solution B2B
 - CI/CD et automatisation du processus de déploiement
-- Prototypage et implémentation de l'AI SDLC
+- Intégration de l'IA sur tout le cycle de vie du développement logiciel
 - Développement et maintenance d'outils internes
 - Formation des développeurs sur les outils et les méthodologies

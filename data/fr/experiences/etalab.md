@@ -3,23 +3,12 @@ company: Etalab
 location: Paris
 start: 2013-08
 end: 2019-10
-role: Teachlead
+role: Techlead
 ---
-En charge du site [Data.gouv.fr](https://www.data.gouv.fr),
-la plateforme nationnale de mise à disposition des données ouvertes,
-j'interviens sur l'ensemble des aspects de son cycle de vie, entre autres:
+En charge de [Data.gouv.fr](https://www.data.gouv.fr),
+la plateforme nationale de données ouvertes:
 
-- conception et réalisation de la plateforme (Python/JavaScript)
-- animation de la communauté associée (logiciel libre)
-- administration de la plateforme
-- administration des infrastructures data.gouv.fr et etalab.gouv.fr
-
-Au delà des aspects et choix techniques innovant,
-Data.gouv.fr c'est aussi des outils et méthodes inédits au sein de l'administration:
-
-- l'agilité nous permet des réactifs et de livrer en un temps records
-- DevOps nous permet d'opérer nous même la plateforme
-- nous interagissons en direct avec la communauté
-
-Un projet enrichissant techniquement et humainement,
-le tout avec un impact social positif.
+- Conception et réalisation de la plateforme (Python/JavaScript)
+- Animation de la communauté open source
+- Administration de la plateforme
+- Administration des infrastructures data.gouv.fr et etalab.gouv.fr
