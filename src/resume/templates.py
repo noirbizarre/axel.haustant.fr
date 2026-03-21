@@ -71,4 +71,5 @@ def get_env(config: Config) -> Environment:
     env.filters["strip_protocol"] = (
         lambda url: str(url).replace("https://", "").replace("http://", "").strip("/")
     )
+    env.filters["oneline"] = lambda text: " ".join(str(text).split()) if text else ""
     return env

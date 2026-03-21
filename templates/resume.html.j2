@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}</title>
     <meta name="author" content="{{ data.profile.full_name }}"/>
-    {% if data.about.tagline %}<meta name="description" content="{{ data.about.tagline }} — {{ data.about.content | default('', true) | truncate(160, True) }}"/>{% endif %}
+    {% if data.about.tagline %}<meta name="description" content="{{ data.about.tagline }} — {{ data.about.content | default('', true) | oneline | truncate(160, True) }}"/>{% endif %}
 
     <!-- Open Graph -->
     <meta property="og:type" content="profile"/>
     <meta property="og:title" content="{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}"/>
-    {% if data.about.content %}<meta property="og:description" content="{{ data.about.content | truncate(200, True) }}"/>{% endif %}
+    {% if data.about.content %}<meta property="og:description" content="{{ data.about.content | oneline | truncate(200, True) }}"/>{% endif %}
     {% if deploy.url %}<meta property="og:url" content="{{ deploy.url }}/{{ lang }}/"/>{% endif %}
     {% if deploy.url and social_preview %}<meta property="og:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
     <meta property="og:locale" content="{{ lang }}"/>
@@ -23,7 +23,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}"/>
-    {% if data.about.content %}<meta name="twitter:description" content="{{ data.about.content | truncate(200, True) }}"/>{% endif %}
+    {% if data.about.content %}<meta name="twitter:description" content="{{ data.about.content | oneline | truncate(200, True) }}"/>{% endif %}
     {% if deploy.url and social_preview %}<meta name="twitter:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
 
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/web.css"/>
@@ -38,9 +38,12 @@
     {%- endfor %}
     {%- for other_lang in config.languages  %}
     {%- if other_lang != lang %}
-    <link rel="alternate" hreflang="{{ other_lang }}" href="/{{ other_lang }}" />
+    <link rel="alternate" hreflang="{{ other_lang }}" href="/{{ other_lang }}/" />
     {%- endif %}
     {%- endfor %}
+    {%- if deploy.url %}
+    <link rel="canonical" href="{{ deploy.url }}/{{ lang }}/" />
+    {%- endif %}
 
     {% if deploy.google_analytics %}
     <!-- Google tag (gtag.js) -->
@@ -171,7 +174,7 @@
             {% for sn in data.profile.social %}
             <div class="online-item">
               {{ icon(sn.icon or sn.name | lower, color=sidebar_icon_color) }}
-              <a href="{{ sn.link }}" target="_blank" rel="noopener">
+              <a href="{{ sn.link }}" target="_blank" rel="{% if sn.name | lower == 'mastodon' %}me {% endif %}noopener">
                 <span class="no-print">{{ sn.name }}</span>
                 <span class="print-only">{{ sn.link | strip_protocol }}</span>
               </a>
