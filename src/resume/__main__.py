@@ -190,6 +190,35 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                 cname_file = OUT / "CNAME"
                 cname_file.write_text(hostname)
 
+        # Generate sitemap.xml
+        if deploy.url:
+            task_sitemap = progress.add_task("Generating sitemap.xml", total=None)
+            sitemap_lines = [
+                '<?xml version="1.0" encoding="UTF-8"?>',
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+                '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+            ]
+            for lang in languages:
+                sitemap_lines.append("  <url>")
+                sitemap_lines.append(f"    <loc>{deploy.url}/{lang}/</loc>")
+                for alt_lang in languages:
+                    sitemap_lines.append(
+                        f'    <xhtml:link rel="alternate" hreflang="{alt_lang}"'
+                        f' href="{deploy.url}/{alt_lang}/"/>'
+                    )
+                sitemap_lines.append("  </url>")
+            sitemap_lines.append("</urlset>")
+            sitemap_file = OUT / "sitemap.xml"
+            sitemap_file.write_text("\n".join(sitemap_lines), encoding="utf-8")
+            progress.update(task_sitemap, description="sitemap.xml generated", completed=1)
+
+            # Generate robots.txt
+            task_robots = progress.add_task("Generating robots.txt", total=None)
+            robots_content = f"User-agent: *\nAllow: /\n\nSitemap: {deploy.url}/sitemap.xml\n"
+            robots_file = OUT / "robots.txt"
+            robots_file.write_text(robots_content, encoding="utf-8")
+            progress.update(task_robots, description="robots.txt generated", completed=1)
+
 
 @app.command
 def experience(name: str, config: Config = Config()):
