@@ -1,5 +1,5 @@
 ---
-company: Orange Business Services/IT&Labs
+company: Orange Business Services / IT&Labs
 location: Lyon
 start: 2007-12
 end: 2008-06

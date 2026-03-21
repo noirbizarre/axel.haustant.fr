@@ -41,10 +41,8 @@
     <link rel="{{ fav.rel }}" type="{{ fav.mime_type }}" sizes="{{ fav.sizes }}" href="{{ root }}/images/{{ fav.filename }}"/>
     {%- endif %}
     {%- endfor %}
-    {%- for other_lang in config.languages  %}
-    {%- if other_lang != lang %}
-    <link rel="alternate" hreflang="{{ other_lang }}" href="/{{ other_lang }}/" />
-    {%- endif %}
+    {%- for lang in config.languages  %}
+    <link rel="alternate" hreflang="{{ lang }}" href="{{ deploy.url }}/{{ lang }}/" />
     {%- endfor %}
     {%- if deploy.url %}
     <link rel="canonical" href="{{ deploy.url }}/{{ lang }}/" />
@@ -73,6 +71,7 @@
     {% endif %}
   </head>
   <body>
+    <a href="#main-content" class="skip-link">{{ _('Skip to main content') }}</a>
     {# WeasyPrint's SVG renderer does not resolve CSS fill:currentColor,
        so we pass explicit fill colors for the PDF version. #}
     {% set header_icon_color = "rgba(255,255,255,0.8)" if pdf else "" %}
@@ -117,17 +116,19 @@
           </div>
           {% endif %}
           <div class="header-contact-item no-print">
-              <a href="./{{ data.profile.pdf_filename }}" class="contact-value" rel="alternate" download type="application/pdf">
+            <nav aria-label="{{ _('Actions') }}">
+              <a href="./{{ data.profile.pdf_filename }}" class="contact-value pdf" rel="alternate" download type="application/pdf" aria-label="{{ _('Download PDF') }}">
                 {{ icon("pdf") }}
               </a>
               <div class="contact-text languages">
                 {{ icon("language") }}
-              {%- for other_lang in config.languages  %}
-              {%- if other_lang != lang %}
-              <a href="/{{ other_lang }}/" class="contact-value" rel="alternate" hreflang="{{ other_lang }}">{{ other_lang }}</a>
-              {%- endif %}
-              {%- endfor %}
+                {%- for other_lang in config.languages  %}
+                {%- if other_lang != lang %}
+                <a href="/{{ other_lang }}/" class="contact-value" rel="alternate" hreflang="{{ other_lang }}">{{ other_lang }}</a>
+                {%- endif %}
+                {%- endfor %}
               </div>
+            </nav>
           </div>
           <div class="header-contact-item print-only">
             <div class="contact-text">
@@ -144,7 +145,7 @@
       <div class="body">
 
         <!-- ─── LEFT SIDEBAR ─── -->
-        <aside class="sidebar">
+        <aside class="sidebar" aria-label="{{ _('About Me') }}">
 
           <!-- About Me -->
           {% if data.about.html %}
@@ -178,6 +179,7 @@
           <section class="sidebar-section">
             <h2 class="section-title">{{ _('Languages') }}</h2>
             <table class="info-table">
+              <caption class="sr-only">{{ _('Languages') }}</caption>
               {% for lang_info in data.about.languages %}
               <tr>
                 <th>{{ lang_info.name }}</th>
@@ -191,6 +193,7 @@
           {% if data.profile.social or data.profile.websites %}
           <section class="sidebar-section">
             <h2 class="section-title">{{ _('Online Profile') }}</h2>
+            <nav aria-label="{{ _('Online Profile') }}">
             {% for sn in data.profile.social %}
             <div class="online-item">
               {{ icon(sn.icon or sn.name | lower, color=sidebar_icon_color) }}
@@ -209,6 +212,7 @@
               </a>
             </div>
             {% endfor %}
+            </nav>
           </section>
           {% endif %}
 
@@ -225,12 +229,12 @@
         </aside>
 
         <!-- ─── TIMELINE (middle) ─── -->
-        <main class="timeline-col">
+        <main id="main-content" class="timeline-col">
           <h2 class="section-title">{{ _('Experience') }}</h2>
           <div class="timeline">
             {% for exp in data.experiences %}
             <div class="timeline-entry">
-              <div class="timeline-year-badge">{{ exp.start.strftime('%Y') if exp.start else '?' }}</div>
+              <div class="timeline-year-badge">{% if exp.start %}<time datetime="{{ exp.start.strftime('%Y') }}">{{ exp.start.strftime('%Y') }}</time>{% else %}?{% endif %}</div>
               <div class="timeline-content">
                 <h3 class="timeline-role">{{ exp.role or exp.company }}</h3>
                 <div class="timeline-meta">
@@ -246,7 +250,7 @@
         </main>
 
         <!-- ─── RIGHT COLUMN ─── -->
-        <aside class="rightcol">
+        <aside class="rightcol" aria-label="{{ _('Skills') }}">
 
           <!-- Skills -->
           {% if data.skill_groups %}
@@ -257,8 +261,8 @@
               <h3>{{ _(group.name) }}</h3>
               {% for s in group.skills %}
               <div class="skill-item">
-                <label>{{ _(s.name) }}</label>
-                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: {{ s.level }}%"></div></div>
+                <span class="skill-name">{{ _(s.name) }}</span>
+                <div class="skill-bar-bg" role="img" aria-label="{{ _(s.name) }}: {{ s.level }}%"><div class="skill-bar-fill" style="width: {{ s.level }}%"></div></div>
               </div>
               {% endfor %}
             </div>

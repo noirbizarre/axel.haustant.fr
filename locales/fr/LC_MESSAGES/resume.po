@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-21 02:31+0100\n"
+"POT-Creation-Date: 2026-03-21 04:54+0100\n"
 "PO-Revision-Date: 2026-03-20 21:10+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -162,27 +162,39 @@ msgstr ""
 msgid "Gitlab CI"
 msgstr ""
 
-#: templates/resume.html.j2:107
+#: templates/resume.html.j2:76
+msgid "Skip to main content"
+msgstr "Aller au contenu principal"
+
+#: templates/resume.html.j2:121
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/resume.html.j2:122
+msgid "Download PDF"
+msgstr "Télécharger le PDF"
+
+#: templates/resume.html.j2:150 templates/resume.html.j2:155
 msgid "About Me"
 msgstr "À propos"
 
-#: templates/resume.html.j2:115
+#: templates/resume.html.j2:163
 msgid "Education"
 msgstr "Formation"
 
-#: templates/resume.html.j2:134
+#: templates/resume.html.j2:182 templates/resume.html.j2:184
 msgid "Languages"
 msgstr "Langues"
 
-#: templates/resume.html.j2:148
+#: templates/resume.html.j2:197 templates/resume.html.j2:198
 msgid "Online Profile"
 msgstr "Profil en ligne"
 
-#: templates/resume.html.j2:184
+#: templates/resume.html.j2:235
 msgid "Experience"
 msgstr "Expérience"
 
-#: templates/resume.html.j2:209
+#: templates/resume.html.j2:255 templates/resume.html.j2:260
 msgid "Skills"
 msgstr "Compétences"
 
