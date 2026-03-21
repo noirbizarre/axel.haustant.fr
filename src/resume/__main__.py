@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 
 from pathlib import Path
@@ -21,12 +22,27 @@ from .images import (
     generate_favicons,
     generate_qr_code,
     generate_social_preview,
+    optimize_avatar,
 )
 from .json_resume import JsonResume
 from .jsonld import generate_jsonld
 from .models import load_resume_for_language
 
 traceback.install(show_locals=True, suppress=[sys.exec_prefix, sys.base_exec_prefix])
+
+# Simple CSS minifier — strips comments, collapses whitespace
+_CSS_COMMENT_RE = re.compile(r"/\*.*?\*/", re.DOTALL)
+_CSS_WHITESPACE_RE = re.compile(r"\s+")
+
+
+def minify_css(css: str) -> str:
+    """Strip comments and collapse whitespace from CSS."""
+    css = _CSS_COMMENT_RE.sub("", css)
+    css = _CSS_WHITESPACE_RE.sub(" ", css)
+    # Remove spaces around punctuation
+    for ch in "{}:;,>~+":
+        css = css.replace(f" {ch} ", ch).replace(f" {ch}", ch).replace(f"{ch} ", ch)
+    return css.strip()
 
 
 ROOT = Path()
@@ -89,17 +105,27 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
         progress.update(task_i18n, description="Translations compiled", completed=1)
 
         task_assets = progress.add_task("Copying assets", total=None)
-        out_dir = OUT / "style"
-        out_dir.mkdir(parents=True, exist_ok=True)
+        out_style_dir = OUT / "style"
+        out_style_dir.mkdir(parents=True, exist_ok=True)
         for stylesheet in STYLE.glob("*.css"):
-            out_file = out_dir / stylesheet.name
+            out_file = out_style_dir / stylesheet.name
             out_file.write_bytes(stylesheet.read_bytes())
-        out_dir = OUT / "images"
-        out_dir.mkdir(parents=True, exist_ok=True)
+
+        # Read and minify web.css for inline embedding
+        web_css_raw = (STYLE / "web.css").read_text(encoding="utf-8")
+        inline_css = minify_css(web_css_raw)
+
+        out_images_dir = OUT / "images"
+        out_images_dir.mkdir(parents=True, exist_ok=True)
         for image in IMAGES.rglob("*.*"):
-            out_file = out_dir / image.name
+            out_file = out_images_dir / image.name
             out_file.write_bytes(image.read_bytes())
         progress.update(task_assets, description="Assets copied", completed=1)
+
+        # Optimize avatar image: resize + generate WebP
+        task_avatar = progress.add_task("Optimizing avatar image", total=None)
+        avatar_png, avatar_webp = optimize_avatar(IMAGES / "me1.png", out_images_dir)
+        progress.update(task_avatar, description="Avatar optimized", completed=1)
 
         task_favicons = progress.add_task("Generating favicons", total=None)
         generate_favicons(IMAGES / "logo.png", OUT / "images", root_dir=OUT)
@@ -137,6 +163,9 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                     favicons=ICON_TYPES,
                     jsonld=jsonld,
                     social_preview=SOCIAL_PREVIEW_FILENAME,
+                    inline_css=inline_css,
+                    avatar_png=avatar_png,
+                    avatar_webp=avatar_webp,
                 )
             )
             progress.update(task_lang, description=f"Built {lang}", completed=1)

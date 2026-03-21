@@ -20,12 +20,12 @@ social:
   -
     name: GitHub
     icon: github
-    link: http://github.com/noirbizarre
+    link: https://github.com/noirbizarre
     display: github.com/noirbizarre
   -
     name: LinkedIn
     icon: linkedin
-    link: http://fr.linkedin.com/in/axelhaustant
+    link: https://fr.linkedin.com/in/axelhaustant
     display: axelhaustant
   -
     name: Mastodon

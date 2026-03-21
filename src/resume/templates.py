@@ -17,6 +17,8 @@ ICONS_DIR = Path("images") / "icons"
 _SVG_TAG_RE = re.compile(r"<svg\b", re.IGNORECASE)
 # Match <path (and other shape elements) to inject fill attributes
 _SHAPE_TAG_RE = re.compile(r"<(path|circle|rect|polygon|ellipse|line)\b", re.IGNORECASE)
+# Strip HTML/XML comments from inline SVGs
+_SVG_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 
 
 def _make_icon_helper(root: Path):
@@ -43,6 +45,8 @@ def _make_icon_helper(root: Path):
             return Markup(f"<!-- icon not found: {name} -->")
 
         svg = _read_svg(svg_path)
+        # Strip HTML comments (e.g. Font Awesome copyright notices) to reduce inline size
+        svg = _SVG_COMMENT_RE.sub("", svg)
         classes = f"icon icon-{name} {cls}".strip()
         fill = color or "currentColor"
         svg = _SVG_TAG_RE.sub(

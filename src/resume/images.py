@@ -117,6 +117,30 @@ def generate_qr_code(file: Path, url: str, *, logo: Path | None = None):
     img.save(file)
 
 
+# Avatar image size for web (covers 2x retina at max display size of 150px)
+_AVATAR_WEB_SIZE = 300
+
+
+def optimize_avatar(source: Path, out_dir: Path) -> tuple[str, str]:
+    """Generate an optimized WebP version of the avatar image.
+
+    The original PNG is kept as fallback (it uses palette mode and is already
+    well-compressed).  The WebP version is resized to ``_AVATAR_WEB_SIZE`` for
+    modern browsers.
+
+    Returns:
+        Tuple of (original_png_filename, webp_filename).
+    """
+    img = Image.open(source).convert("RGB")
+    resized = img.resize((_AVATAR_WEB_SIZE, _AVATAR_WEB_SIZE), Image.Resampling.LANCZOS)
+    stem = source.stem
+
+    webp_name = f"{stem}-web.webp"
+    resized.save(out_dir / webp_name, format="WEBP", quality=85)
+
+    return source.name, webp_name
+
+
 SOCIAL_PREVIEW_FILENAME = "social-preview.png"
 SOCIAL_PREVIEW_WIDTH = 1200
 SOCIAL_PREVIEW_HEIGHT = 630

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#5b89b4"/>
     <title>{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}</title>
     <meta name="author" content="{{ data.profile.full_name }}"/>
     {% if data.about.tagline %}<meta name="description" content="{{ data.about.tagline }} — {{ data.about.content | default('', true) | oneline | truncate(160, True) }}"/>{% endif %}
@@ -26,7 +27,11 @@
     {% if data.about.content %}<meta name="twitter:description" content="{{ data.about.content | oneline | truncate(200, True) }}"/>{% endif %}
     {% if deploy.url and social_preview %}<meta name="twitter:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
 
+    {% if inline_css %}
+    <style>{{ inline_css | safe }}</style>
+    {% else %}
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/web.css"/>
+    {% endif %}
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/print.css" media="print"/>
     {% if pdf %}<link rel="stylesheet" type="text/css" href="{{ root }}/style/pdf.css" media="print"/>{% endif %}
     {%- for fav in favicons %}
@@ -46,13 +51,21 @@
     {%- endif %}
 
     {% if deploy.google_analytics %}
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ deploy.google_analytics }}"></script>
+    <!-- Google Analytics – deferred until idle to reduce TBT -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin/>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ deploy.google_analytics }}');
+      function _loadGA(){
+        var s=document.createElement('script');
+        s.src='https://www.googletagmanager.com/gtag/js?id={{ deploy.google_analytics }}';
+        s.async=true;
+        document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());
+        gtag('config','{{ deploy.google_analytics }}');
+      }
+      if(typeof requestIdleCallback==='function'){requestIdleCallback(_loadGA)}
+      else{setTimeout(_loadGA,2000)}
     </script>
     {% endif %}
     {% if jsonld %}
@@ -69,7 +82,14 @@
       <!-- ═══════════════ HEADER ═══════════════ -->
       <header class="header">
         <div class="header-identity">
-          <img class="avatar" src="{{ root }}{{ data.profile.avatar or '/images/me1.png' }}" alt="{{ data.profile.full_name }}"/>
+          {% if avatar_webp and avatar_png %}
+          <picture>
+            <source srcset="{{ root }}/images/{{ avatar_webp }}" type="image/webp"/>
+            <img class="avatar" src="{{ root }}/images/{{ avatar_png }}" alt="{{ data.profile.full_name }}" width="88" height="88" fetchpriority="high"/>
+          </picture>
+          {% else %}
+          <img class="avatar" src="{{ root }}{{ data.profile.avatar or '/images/me1.png' }}" alt="{{ data.profile.full_name }}" width="88" height="88" fetchpriority="high"/>
+          {% endif %}
           <div class="header-name">
             <h1>{{ data.profile.full_name }}</h1>
             {% if data.about.tagline %}<p class="tagline">{{ data.about.tagline }}</p>{% endif %}
@@ -196,7 +216,7 @@
           {% if deploy.url %}
           <section class="sidebar-section sidebar-qrcode print-only">
             <a href="{{ deploy.url }}">
-              <img class="qrcode" src="{{ root }}/images/qrcode.png" alt="QR Code: {{ deploy.url }}"/>
+              <img class="qrcode" src="{{ root }}/images/qrcode.png" alt="QR Code: {{ deploy.url }}" width="150" height="150" loading="lazy"/>
             </a>
           </section>
           {% endif %}
