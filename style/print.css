@@ -9,6 +9,7 @@
    any content is placed on the new page. */
 @page {
   size: A4 portrait;
+  margin: 0;
 }
 
 /* First page: header already sits at the top, no extra gap needed. */
@@ -72,11 +73,11 @@ body {
 }
 
 .sidebar {
-  width: 25% !important;
+  width: 23% !important;
 }
 
 .rightcol {
-  width: 25% !important;
+  width: 23% !important;
 }
 
 .timeline-year-badge {
@@ -109,6 +110,11 @@ body {
 
 .header-contact-item > .icon {
   color: rgba(255, 255, 255, 0.8);
+}
+
+.avatar {
+  width: 75px !important;
+  height: 75px !important;
 }
 
 

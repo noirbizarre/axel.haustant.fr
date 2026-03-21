@@ -320,7 +320,7 @@ ul {
 
 /* Timeline entries: badge on the left, content with border-left line */
 .timeline {
-  margin-top: 0.25rem;
+  margin-top: 0;
 }
 
 .timeline-entry {

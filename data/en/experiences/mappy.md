@@ -1,11 +1,11 @@
 ---
 company: Mappy
-start: 2012-02
+start: 2011-07
 end: 2013-08
-role: Techlead GeoData
+role: Techlead / GeoData scientist
 location: Paris
 ---
-- CI/CD and DevOps practices setup (Jenkins / Python / Fabric)
-- Indoor panoramic views backoffice development (Python / Django / JavaScript / AWS)
+- CI/CD and DevOps practices setup (Jenkins / Maven / Python / Fabric)
+- Indoor panoramic views platform, backoffice and processing pipeline (Python / Django / JavaScript / AWS)
 - Geospatial data integration and cartography (PostgreSQL/PostGIS / GDAL / Mapnik)
-- Internal tooling development
+- POI platform architecture (Java / REST / MongoDB)
