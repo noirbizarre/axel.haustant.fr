@@ -97,7 +97,6 @@ body {
 .timeline-entry,
 .edu-entry,
 .skill-item,
-.expertise-group,
 .skill-group {
   break-inside: avoid;
 }

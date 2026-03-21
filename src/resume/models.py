@@ -97,16 +97,6 @@ class Conference(BaseModel):
         return [cls(**d) for d in load_yaml_list(yaml_file)]
 
 
-class Expertise(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    name: str
-    lines: list[str] = Field(default_factory=list)
-
-    @classmethod
-    def from_file(cls, yaml_file: Path) -> list[Expertise]:
-        return [cls(**d) for d in load_yaml_list(yaml_file)]
-
-
 class Skill(BaseModel):
     model_config = ConfigDict(extra="ignore")
     name: str
@@ -215,7 +205,6 @@ class ResumeData(BaseModel):
     experiences: list[Experience] = Field(default_factory=list)
     schools: list[School] = Field(default_factory=list)
     conferences: list[Conference] = Field(default_factory=list)
-    expertise: list[Expertise] = Field(default_factory=list)
     skill_groups: list[SkillGroup] = Field(default_factory=list)
     projects: list[Project] = Field(default_factory=list)
     profile: Profile
@@ -233,7 +222,6 @@ class ResumeData(BaseModel):
             experiences=Experience.from_files(lang_dir / "experiences"),
             schools=School.from_file(lang_dir / "education.yml"),
             conferences=Conference.from_file(lang_dir / "conferences.yml"),
-            expertise=Expertise.from_file(lang_dir / "expertise.yml"),
             skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
             projects=Project.from_file(lang_dir / "projects.md")[0],
             profile=Profile.from_file(lang_dir.parent / "profile.yaml"),
@@ -269,7 +257,6 @@ def load_resume_for_language(lang_dir: Path) -> ResumeData:
         experiences=Experience.from_files(lang_dir / "experiences"),
         schools=School.from_file(lang_dir / "education.yml"),
         conferences=Conference.from_file(lang_dir / "conferences.yml"),
-        expertise=Expertise.from_file(lang_dir / "expertise.yml"),
         skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
         projects=Project.from_file(lang_dir / "projects.md")[0],
         profile=Profile.from_file(lang_dir.parent / "profile.yaml"),

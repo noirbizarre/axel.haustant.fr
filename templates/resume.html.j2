@@ -203,21 +203,6 @@
         <!-- ─── RIGHT COLUMN ─── -->
         <aside class="rightcol">
 
-          <!-- Expertise -->
-          {% if data.expertise %}
-          <section class="rightcol-section">
-            <h2 class="section-title">{{ _('Expertise') }}</h2>
-            {% for ex in data.expertise %}
-            <div class="expertise-group">
-              <h3>{{ ex.name }}</h3>
-              <ul>
-                {% for line in ex.lines %}<li>{{ line }}</li>{% endfor %}
-              </ul>
-            </div>
-            {% endfor %}
-          </section>
-          {% endif %}
-
           <!-- Skills -->
           {% if data.skill_groups %}
           <section class="rightcol-section">

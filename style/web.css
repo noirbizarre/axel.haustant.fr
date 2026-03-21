@@ -442,23 +442,6 @@ ul {
   margin-bottom: 0;
 }
 
-/* Expertise */
-.expertise-group {
-  margin-bottom: 0.8rem;
-}
-
-.expertise-group h3 {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 0.25rem;
-}
-
-.expertise-group ul {
-  font-size: 0.75rem;
-  color: var(--text-medium);
-}
-
 /* Skill groups */
 .skill-group {
   margin-bottom: 0.85rem;

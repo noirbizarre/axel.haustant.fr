@@ -17,4 +17,5 @@ languages:
 
 Staff Engineer avec plus de 18 ans d'expérience dans la conception de plateformes,
 le pilotage d'équipes techniques et la livraison de logiciels à grande échelle.
+Auteur et contributeur open source actif.
 Passionné par Python, le DevOps, l'open source, l'IA et l'expérience développeur.

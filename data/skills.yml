@@ -27,6 +27,9 @@
   name: Methodology
   skills:
   -
+    name: Application Architecture
+    level: 85
+  -
     name: Agility
     level: 90
   -

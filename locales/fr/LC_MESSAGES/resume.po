@@ -55,6 +55,10 @@ msgid "Methodology"
 msgstr "Méthodologie"
 
 #: data/skills.yml:1
+msgid "Application Architecture"
+msgstr "Architecture applicative"
+
+#: data/skills.yml:1
 msgid "Agility"
 msgstr "Agilité"
 
@@ -225,10 +229,6 @@ msgstr "Profil en ligne"
 #: templates/resume.html.j2:184
 msgid "Experience"
 msgstr "Expérience"
-
-#: templates/resume.html.j2:209
-msgid "Expertise"
-msgstr "Expertise"
 
 #: templates/resume.html.j2:224
 msgid "Skills"
