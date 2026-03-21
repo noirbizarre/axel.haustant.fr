@@ -133,6 +133,7 @@ def _profile_page(data: ResumeData, lang: str, base_url: str) -> dict[str, Any]:
         "url": page_url,
         "name": data.profile.full_name,
         "isPartOf": {"@id": f"{base_url}/#website"},
+        "mainEntity": {"@id": f"{base_url}/#person"},
         "about": {"@id": f"{base_url}/#person"},
         "inLanguage": lang,
     }
