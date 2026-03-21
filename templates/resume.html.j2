@@ -3,7 +3,29 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>{{ data.profile.full_name }}</title>
+    <title>{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}</title>
+    <meta name="author" content="{{ data.profile.full_name }}"/>
+    {% if data.about.tagline %}<meta name="description" content="{{ data.about.tagline }} — {{ data.about.content | default('', true) | truncate(160, True) }}"/>{% endif %}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile"/>
+    <meta property="og:title" content="{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}"/>
+    {% if data.about.content %}<meta property="og:description" content="{{ data.about.content | truncate(200, True) }}"/>{% endif %}
+    {% if deploy.url %}<meta property="og:url" content="{{ deploy.url }}/{{ lang }}/"/>{% endif %}
+    {% if deploy.url and social_preview %}<meta property="og:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
+    <meta property="og:locale" content="{{ lang }}"/>
+    {% for other_lang in config.languages if other_lang != lang %}
+    <meta property="og:locale:alternate" content="{{ other_lang }}"/>
+    {% endfor %}
+    <meta property="profile:first_name" content="{{ data.profile.first_name }}"/>
+    <meta property="profile:last_name" content="{{ data.profile.last_name }}"/>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}"/>
+    {% if data.about.content %}<meta name="twitter:description" content="{{ data.about.content | truncate(200, True) }}"/>{% endif %}
+    {% if deploy.url and social_preview %}<meta name="twitter:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
+
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/web.css"/>
     <link rel="stylesheet" type="text/css" href="{{ root }}/style/print.css" media="print"/>
     {% if pdf %}<link rel="stylesheet" type="text/css" href="{{ root }}/style/pdf.css" media="print"/>{% endif %}

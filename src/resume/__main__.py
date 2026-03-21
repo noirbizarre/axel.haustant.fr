@@ -15,7 +15,13 @@ from weasyprint import HTML
 
 from . import i18n, templates
 from .config import Config, Deploy
-from .images import ICON_TYPES, generate_favicons, generate_qr_code
+from .images import (
+    ICON_TYPES,
+    SOCIAL_PREVIEW_FILENAME,
+    generate_favicons,
+    generate_qr_code,
+    generate_social_preview,
+)
 from .json_resume import JsonResume
 from .jsonld import generate_jsonld
 from .models import load_resume_for_language
@@ -130,9 +136,24 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                     root=deploy.url,
                     favicons=ICON_TYPES,
                     jsonld=jsonld,
+                    social_preview=SOCIAL_PREVIEW_FILENAME,
                 )
             )
             progress.update(task_lang, description=f"Built {lang}", completed=1)
+
+            # Generate social preview image
+            task_social = progress.add_task(f"Generating social preview for {lang}", total=None)
+            avatar_file = OUT / (dataset.profile.avatar or "/images/me1.png").lstrip("/")
+            generate_social_preview(
+                out_lang_dir,
+                full_name=dataset.profile.full_name,
+                tagline=dataset.about.tagline or "",
+                avatar_path=avatar_file,
+                url=deploy.url or "",
+            )
+            progress.update(
+                task_social, description=f"Social preview generated for {lang}", completed=1
+            )
 
             # Generate PDF
             task_pdf = progress.add_task(f"Generating PDF for {lang}", total=None)
