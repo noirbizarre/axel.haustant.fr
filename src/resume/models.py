@@ -117,19 +117,6 @@ class SkillGroup(BaseModel):
         ]
 
 
-class Project(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    name: str
-    url: HttpUrl | None = None
-    description: str | None = None
-
-    @classmethod
-    def from_file(cls, md_file: Path) -> tuple[list[Project], str]:
-        meta, body = parse_front_matter(md_file.read_text(encoding="utf-8"))
-        opensource = meta.get("opensource", []) or []
-        return [cls(**p) for p in opensource], body.strip()
-
-
 class Website(BaseModel):
     model_config = ConfigDict(extra="ignore")
     name: str
@@ -206,7 +193,6 @@ class ResumeData(BaseModel):
     schools: list[School] = Field(default_factory=list)
     conferences: list[Conference] = Field(default_factory=list)
     skill_groups: list[SkillGroup] = Field(default_factory=list)
-    projects: list[Project] = Field(default_factory=list)
     profile: Profile
     labels: dict[str, str] = Field(default_factory=dict)
 
@@ -223,7 +209,6 @@ class ResumeData(BaseModel):
             schools=School.from_file(lang_dir / "education.yml"),
             conferences=Conference.from_file(lang_dir / "conferences.yml"),
             skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
-            projects=Project.from_file(lang_dir / "projects.md")[0],
             profile=Profile.from_file(lang_dir.parent / "profile.yaml"),
             labels=labels,
         )
@@ -258,7 +243,6 @@ def load_resume_for_language(lang_dir: Path) -> ResumeData:
         schools=School.from_file(lang_dir / "education.yml"),
         conferences=Conference.from_file(lang_dir / "conferences.yml"),
         skill_groups=SkillGroup.from_file(lang_dir.parent / "skills.yml"),
-        projects=Project.from_file(lang_dir / "projects.md")[0],
         profile=Profile.from_file(lang_dir.parent / "profile.yaml"),
         labels=labels,
     )

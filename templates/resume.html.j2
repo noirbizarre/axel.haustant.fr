@@ -221,20 +221,6 @@
           </section>
           {% endif %}
 
-          <!-- Projects -->
-          {% if data.projects %}
-          <section class="rightcol-section">
-            <h2 class="section-title">{{ _('Projects') }}</h2>
-            <ul class="projects-list">
-              {% for p in data.projects %}
-              <li>
-                <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a>
-                {% if p.description %}<span>: {{ p.description }}</span>{% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-          </section>
-          {% endif %}
 
         </aside>
       </div><!-- .body -->

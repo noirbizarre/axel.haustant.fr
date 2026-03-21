@@ -2,7 +2,7 @@ from datetime import date
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
-from resume.models import Experience, Project, ResumeData, School
+from resume.models import Experience, ResumeData, School
 from resume.models import Language as SrcLanguage
 
 
@@ -120,22 +120,6 @@ class SkillEntry(BaseModel):
         return skills
 
 
-class ProjectEntry(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-
-    name: str
-    description: str | None = None
-    url: HttpUrl | None = None
-
-    @classmethod
-    def from_project(cls, project: Project) -> ProjectEntry:
-        return cls(name=project.name, description=project.description, url=project.url)
-
-    @classmethod
-    def list_from_data(cls, data: ResumeData) -> list[ProjectEntry]:
-        return [cls.from_project(p) for p in data.projects]
-
-
 class LanguageEntry(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
@@ -159,7 +143,6 @@ class JsonResume(BaseModel):
     work: list[WorkEntry] = Field(default_factory=list)
     education: list[EducationEntry] = Field(default_factory=list)
     skills: list[SkillEntry] = Field(default_factory=list)
-    projects: list[ProjectEntry] = Field(default_factory=list)
     languages: list[LanguageEntry] = Field(default_factory=list)
     schema_: str = Field(
         "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
@@ -174,6 +157,5 @@ class JsonResume(BaseModel):
             work=WorkEntry.list_from_data(dataset),
             education=EducationEntry.list_from_data(dataset),
             skills=SkillEntry.list_from_data(dataset),
-            projects=ProjectEntry.list_from_data(dataset),
             languages=LanguageEntry.list_from_data(dataset),
         )

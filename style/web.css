@@ -454,22 +454,6 @@ ul {
   margin-bottom: 0.35rem;
 }
 
-/* Projects */
-.projects-list {
-  list-style: none;
-  padding: 0;
-  font-size: 0.78rem;
-}
-
-.projects-list li {
-  margin-bottom: 0.35rem;
-  line-height: 1.4;
-}
-
-.projects-list a {
-  font-weight: 600;
-}
-
 /* ══════════════════════════════════════════════════════════
    RESPONSIVE – tablet (not print)
    Two-column layout: sidebar + main content merged,
@@ -595,8 +579,7 @@ ul {
     padding: 0.25rem 0;
   }
 
-  .info-table td a,
-  .projects-list a {
+  .info-table td a {
     display: inline-block;
     min-height: 44px;
     line-height: 44px;

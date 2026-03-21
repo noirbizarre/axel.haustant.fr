@@ -234,10 +234,6 @@ msgstr "Expérience"
 msgid "Skills"
 msgstr "Compétences"
 
-#: templates/resume.html.j2:242
-msgid "Projects"
-msgstr "Projets"
-
 #~ msgid "Technical Skills"
 #~ msgstr "Compétences techniques"
 
