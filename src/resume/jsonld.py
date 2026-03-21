@@ -19,7 +19,7 @@ def generate_jsonld(data: ResumeData, lang: str, deploy: Deploy, config: Config)
     graph: list[dict[str, Any]] = [
         _person(data, base_url),
         _website(data, base_url, config),
-        _profile_page(data, lang, base_url),
+        _profile_page(data, lang, base_url, config.default_language),
     ]
     payload: dict[str, Any] = {
         "@context": "https://schema.org",
@@ -125,8 +125,9 @@ def _website(data: ResumeData, base_url: str, config: Config) -> dict[str, Any]:
     return site
 
 
-def _profile_page(data: ResumeData, lang: str, base_url: str) -> dict[str, Any]:
-    page_url = f"{base_url}/{lang}/"
+def _profile_page(data: ResumeData, lang: str, base_url: str, default_lang: str) -> dict[str, Any]:
+    lang_path = "" if lang == default_lang else f"/{lang}"
+    page_url = f"{base_url}{lang_path}/"
     page: dict[str, Any] = {
         "@type": "ProfilePage",
         "@id": f"{page_url}#webpage",

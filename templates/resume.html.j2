@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ lang }}">
   <head>
+    {%- set current_path = "" if lang == config.default_language else "/" ~ lang %}
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#5b89b4"/>
@@ -12,8 +13,8 @@
     <meta property="og:type" content="profile"/>
     <meta property="og:title" content="{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}"/>
     {% if data.about.content %}<meta property="og:description" content="{{ data.about.content | oneline | truncate(200, True) }}"/>{% endif %}
-    {% if deploy.url %}<meta property="og:url" content="{{ deploy.url }}/{{ lang }}/"/>{% endif %}
-    {% if deploy.url and social_preview %}<meta property="og:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
+    {% if deploy.url %}<meta property="og:url" content="{{ deploy.url }}{{ current_path }}/"/>{% endif %}
+    {% if deploy.url and social_preview %}<meta property="og:image" content="{{ deploy.url }}{{ current_path }}/{{ social_preview }}"/>{% endif %}
     <meta property="og:locale" content="{{ lang }}"/>
     {% for other_lang in config.languages if other_lang != lang %}
     <meta property="og:locale:alternate" content="{{ other_lang }}"/>
@@ -25,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="{{ data.profile.full_name }}{% if data.about.tagline %} — {{ data.about.tagline }}{% endif %}"/>
     {% if data.about.content %}<meta name="twitter:description" content="{{ data.about.content | oneline | truncate(200, True) }}"/>{% endif %}
-    {% if deploy.url and social_preview %}<meta name="twitter:image" content="{{ deploy.url }}/{{ lang }}/{{ social_preview }}"/>{% endif %}
+    {% if deploy.url and social_preview %}<meta name="twitter:image" content="{{ deploy.url }}{{ current_path }}/{{ social_preview }}"/>{% endif %}
 
     {% if inline_css %}
     <style>{{ inline_css | safe }}</style>
@@ -41,11 +42,12 @@
     <link rel="{{ fav.rel }}" type="{{ fav.mime_type }}" sizes="{{ fav.sizes }}" href="{{ root }}/images/{{ fav.filename }}"/>
     {%- endif %}
     {%- endfor %}
-    {%- for lang in config.languages  %}
-    <link rel="alternate" hreflang="{{ lang }}" href="{{ deploy.url }}/{{ lang }}/" />
+    {%- for l in config.languages  %}
+    {%- set lang_path = "" if l == config.default_language else "/" ~ l %}
+    <link rel="alternate" hreflang="{{ l }}" href="{{ deploy.url }}{{ lang_path }}/" />
     {%- endfor %}
     {%- if deploy.url %}
-    <link rel="canonical" href="{{ deploy.url }}/{{ lang }}/" />
+    <link rel="canonical" href="{{ deploy.url }}{{ current_path }}/" />
     {%- endif %}
 
     {% if deploy.google_analytics %}
@@ -124,7 +126,8 @@
                 {{ icon("language") }}
                 {%- for other_lang in config.languages  %}
                 {%- if other_lang != lang %}
-                <a href="/{{ other_lang }}/" class="contact-value" rel="alternate" hreflang="{{ other_lang }}">{{ other_lang }}</a>
+                {%- set other_path = "/" if other_lang == config.default_language else "/" ~ other_lang ~ "/" %}
+                <a href="{{ other_path }}" class="contact-value" rel="alternate" hreflang="{{ other_lang }}">{{ other_lang }}</a>
                 {%- endif %}
                 {%- endfor %}
               </div>

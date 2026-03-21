@@ -144,7 +144,8 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             i18n.set_locale(lang)
             task_lang = progress.add_task(f"Building {lang}", total=None)
             dataset = load_resume_for_language(DATA / lang)
-            out_lang_dir = OUT / lang
+            # Default language outputs to root, others to subdirectories
+            out_lang_dir = OUT if lang == default_lang else OUT / lang
             out_lang_dir.mkdir(parents=True, exist_ok=True)
             # Generate JSON-LD structured data for SEO
             jsonld = generate_jsonld(dataset, lang, deploy, config)
@@ -196,19 +197,6 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
             HTML(string=pdf_html, base_url=str(OUT)).write_pdf(str(pdf_path))
             progress.update(task_pdf, description=f"PDF generated: {pdf_path}", completed=1)
 
-        # Root redirect to default language
-        root_index = OUT / "index.html"
-        redirect_template = env.get_template("redirect.html.j2")
-        root_index.write_text(
-            redirect_template.render(
-                default_lang=default_lang,
-                config=config,
-                deploy=deploy,
-                root=deploy.url,
-                favicons=ICON_TYPES,
-            )
-        )
-
         # CNAME for custom domain (GitHub Pages)
         if deploy.url:
             hostname = urlparse(deploy.url).hostname
@@ -225,12 +213,15 @@ def build(*, config: Config = Config(), deploy: Deploy = Deploy()):
                 '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
             ]
             for lang in languages:
+                lang_path = "" if lang == default_lang else f"/{lang}"
+                lang_url = f"{deploy.url}{lang_path}/"
                 sitemap_lines.append("  <url>")
-                sitemap_lines.append(f"    <loc>{deploy.url}/{lang}/</loc>")
+                sitemap_lines.append(f"    <loc>{lang_url}</loc>")
                 for alt_lang in languages:
+                    alt_path = "" if alt_lang == default_lang else f"/{alt_lang}"
+                    alt_url = f"{deploy.url}{alt_path}/"
                     sitemap_lines.append(
-                        f'    <xhtml:link rel="alternate" hreflang="{alt_lang}"'
-                        f' href="{deploy.url}/{alt_lang}/"/>'
+                        f'    <xhtml:link rel="alternate" hreflang="{alt_lang}" href="{alt_url}"/>'
                     )
                 sitemap_lines.append("  </url>")
             sitemap_lines.append("</urlset>")
