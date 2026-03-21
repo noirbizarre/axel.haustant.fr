@@ -47,9 +47,6 @@
   -
     name: Orchestration / Agentic workflows
     level: 75
-  -
-    name: Code assistant
-    level: 90
 -
   name: Databases
   skills:
@@ -80,34 +77,6 @@
   -
     name: NATS
     level: 70
--
-  name: Frameworks
-  skills:
-    -
-      name: Flask
-      level: 90
-    -
-      name: FastAPI
-      level: 90
-    -
-      name: FastMCP
-      level: 80
-    -
-      name: Pydantic
-      level: 90
-    -
-      name: SQLAlchemy
-      level: 80
-    -
-      name: Django
-      level: 75
-    -
-      name: Vue.js
-      level: 75
-    -
-      name: React
-      level: 50
-
 -
   name: System administration
   skills:

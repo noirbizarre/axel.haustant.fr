@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-21 02:06+0100\n"
+"POT-Creation-Date: 2026-03-21 02:31+0100\n"
 "PO-Revision-Date: 2026-03-20 21:10+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -43,10 +43,6 @@ msgid "Golang"
 msgstr ""
 
 #: data/skills.yml:1
-msgid "Java/J2EE"
-msgstr ""
-
-#: data/skills.yml:1
 msgid "SQL"
 msgstr ""
 
@@ -64,10 +60,6 @@ msgstr "Agilité"
 
 #: data/skills.yml:1
 msgid "DevOps"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "Lean"
 msgstr ""
 
 #: data/skills.yml:1
@@ -89,10 +81,6 @@ msgstr "Entraînement de modèles"
 #: data/skills.yml:1
 msgid "Orchestration / Agentic workflows"
 msgstr "Orchestration / Workflows agentiques"
-
-#: data/skills.yml:1
-msgid "Code assistant"
-msgstr "Assistant de code"
 
 #: data/skills.yml:1
 msgid "Databases"
@@ -132,42 +120,6 @@ msgstr ""
 
 #: data/skills.yml:1
 msgid "NATS"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "Frameworks"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "Flask"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "FastAPI"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "FastMCP"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "Pydantic"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "SQLAlchemy"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "Django"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "Vue.js"
-msgstr ""
-
-#: data/skills.yml:1
-msgid "React"
 msgstr ""
 
 #: data/skills.yml:1
@@ -230,7 +182,7 @@ msgstr "Profil en ligne"
 msgid "Experience"
 msgstr "Expérience"
 
-#: templates/resume.html.j2:224
+#: templates/resume.html.j2:209
 msgid "Skills"
 msgstr "Compétences"
 
@@ -265,5 +217,41 @@ msgstr "Compétences"
 #~ msgstr "Divers (outils)"
 
 #~ msgid "git"
+#~ msgstr ""
+
+#~ msgid "Java/J2EE"
+#~ msgstr ""
+
+#~ msgid "Lean"
+#~ msgstr ""
+
+#~ msgid "Code assistant"
+#~ msgstr "Assistant de code"
+
+#~ msgid "Frameworks"
+#~ msgstr ""
+
+#~ msgid "Flask"
+#~ msgstr ""
+
+#~ msgid "FastAPI"
+#~ msgstr ""
+
+#~ msgid "FastMCP"
+#~ msgstr ""
+
+#~ msgid "Pydantic"
+#~ msgstr ""
+
+#~ msgid "SQLAlchemy"
+#~ msgstr ""
+
+#~ msgid "Django"
+#~ msgstr ""
+
+#~ msgid "Vue.js"
+#~ msgstr ""
+
+#~ msgid "React"
 #~ msgstr ""
 
