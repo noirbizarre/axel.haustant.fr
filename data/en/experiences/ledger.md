@@ -9,6 +9,6 @@ role: Staff Engineer
 - Technical lead on the B2B solution Python backend
 - CI/CD and automation of the deployment process
 - AI SDLC prototyping and implementation
-- AI platform design and implementation (based on Temporal, multichannel: Slack, GitHub, Atlassian...)
+- AI agentic platform design and implementation (based on Temporal, multichannel: Slack, GitHub, Atlassian...)
 - Internal tooling development and maintenance
 - Developers training on tooling and methodologies
