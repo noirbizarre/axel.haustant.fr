@@ -3,18 +3,11 @@
    NOT loaded for WeasyPrint PDF (pdf.css overrides @page there).
    ═══════════════════════════════════════════════════════════ */
 
-/* @page padding-top creates breathing room at the top of every
-   page (including after page breaks) at the layout-engine level,
-   which is the only mechanism browsers/WeasyPrint apply before
-   any content is placed on the new page. */
+/* Edge-to-edge output: the header background bleeds to the paper
+   edge by design. */
 @page {
   size: A4 portrait;
   margin: 0;
-}
-
-/* First page: header already sits at the top, no extra gap needed. */
-@page :first {
-  padding-top: 0;
 }
 
 /* ── Ensure backgrounds & colors print ───────────────────── */
@@ -58,25 +51,29 @@ body {
   text-align: right !important;
 }
 
-/* ── Body: display:table for reliable cross-page columns ─── */
+/* ── Body: float-based columns for cross-page pagination ─────
+   Neither display:table nor a single-row CSS Grid fragment across
+   pages in WeasyPrint: the whole body is treated as one unbreakable
+   block and pushed onto page 2, leaving page 1 empty.
+   Three floated columns, however, live in normal block flow and
+   paginate naturally, so content that overflows a page continues
+   on the next one instead of skipping the whole body forward. */
 .body {
-  display: table !important;
-  width: 100% !important;
-  border-collapse: collapse !important;
-}
-
-.sidebar,
-.timeline-col,
-.rightcol {
-  display: table-cell !important;
-  vertical-align: top !important;
+  display: block !important;
 }
 
 .sidebar {
+  float: left !important;
   width: 23% !important;
 }
 
+.timeline-col {
+  float: left !important;
+  width: 54% !important;
+}
+
 .rightcol {
+  float: left !important;
   width: 23% !important;
 }
 
