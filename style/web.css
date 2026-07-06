@@ -428,6 +428,16 @@ a.pdf {
   padding-bottom: 0;
 }
 
+/* Date range (start – end / now), dimmed and italic, top-right of the entry */
+.timeline-dates {
+  float: right;
+  margin-left: 0.75rem;
+  font-size: 0.68rem;
+  font-style: italic;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
 .timeline-role {
   font-size: 0.86rem;
   font-weight: 700;

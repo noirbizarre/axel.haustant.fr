@@ -239,6 +239,13 @@
             <div class="timeline-entry">
               <div class="timeline-year-badge">{% if exp.start %}<time datetime="{{ exp.start.strftime('%Y') }}">{{ exp.start.strftime('%Y') }}</time>{% else %}?{% endif %}</div>
               <div class="timeline-content">
+                {% if exp.start %}
+                <div class="timeline-dates">
+                  <time datetime="{{ exp.start.strftime('%Y-%m') }}">{{ exp.start.strftime('%m/%Y') }}</time>
+                  &ndash;
+                  {% if exp.end %}<time datetime="{{ exp.end.strftime('%Y-%m') }}">{{ exp.end.strftime('%m/%Y') }}</time>{% else %}<span>{{ _('now') }}</span>{% endif %}
+                </div>
+                {% endif %}
                 <h3 class="timeline-role">{{ exp.role or exp.company }}</h3>
                 <div class="timeline-meta">
                   {% if exp.url %}<a href="{{ exp.url }}">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}{% if exp.location %}, {{ exp.location }}{% endif %}

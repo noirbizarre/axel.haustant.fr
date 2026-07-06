@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-21 04:54+0100\n"
+"POT-Creation-Date: 2026-07-06 11:43+0200\n"
 "PO-Revision-Date: 2026-03-20 21:10+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -174,27 +174,31 @@ msgstr "Actions"
 msgid "Download PDF"
 msgstr "Télécharger le PDF"
 
-#: templates/resume.html.j2:150 templates/resume.html.j2:155
+#: templates/resume.html.j2:151 templates/resume.html.j2:156
 msgid "About Me"
 msgstr "À propos"
 
-#: templates/resume.html.j2:163
+#: templates/resume.html.j2:164
 msgid "Education"
 msgstr "Formation"
 
-#: templates/resume.html.j2:182 templates/resume.html.j2:184
+#: templates/resume.html.j2:183 templates/resume.html.j2:185
 msgid "Languages"
 msgstr "Langues"
 
-#: templates/resume.html.j2:197 templates/resume.html.j2:198
+#: templates/resume.html.j2:198 templates/resume.html.j2:199
 msgid "Online Profile"
 msgstr "Profil en ligne"
 
-#: templates/resume.html.j2:235
+#: templates/resume.html.j2:236
 msgid "Experience"
 msgstr "Expérience"
 
-#: templates/resume.html.j2:255 templates/resume.html.j2:260
+#: templates/resume.html.j2:246
+msgid "now"
+msgstr "aujourd'hui"
+
+#: templates/resume.html.j2:263 templates/resume.html.j2:268
 msgid "Skills"
 msgstr "Compétences"
 
