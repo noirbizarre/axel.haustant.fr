@@ -11,4 +11,6 @@ la plateforme nationale de données ouvertes:
 - Conception et réalisation de la plateforme (Python/JavaScript)
 - Animation de la communauté open source
 - Administration de la plateforme
-- Administration des infrastructures data.gouv.fr et etalab.gouv.fr
+- Administration des infrastructures [Data.gouv.fr](https://www.data.gouv.fr)  et [Etalab.gouv.fr](https://www.etalab.gouv.fr)
+- Analyse et traitement de données sur les principaux jeux de données (institutionnels et communautaires)
+
