@@ -241,7 +241,7 @@
               <div class="timeline-content">
                 <h3 class="timeline-role">{{ exp.role or exp.company }}</h3>
                 <div class="timeline-meta">
-                  {{ exp.company }}{% if exp.location %}, {{ exp.location }}{% endif %}
+                  {% if exp.url %}<a href="{{ exp.url }}">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}{% if exp.location %}, {{ exp.location }}{% endif %}
                 </div>
                 {% if exp.html %}
                 <div class="timeline-desc">{{ exp.html | safe }}</div>

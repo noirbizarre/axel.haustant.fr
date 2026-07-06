@@ -41,6 +41,7 @@ def parse_year_or_year_month(value: str) -> date:
 class Experience(BaseModel):
     model_config = ConfigDict(extra="ignore")
     company: str | None = None
+    url: HttpUrl | None = None
     location: str | None = None
     role: str | None = None
     start: date | None = None

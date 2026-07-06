@@ -1,5 +1,6 @@
 ---
 company: Kompass
+url: https://www.kompass.com
 location: Courbevoie
 start: 2010-08
 end: 2011-04

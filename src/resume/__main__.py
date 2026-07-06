@@ -249,6 +249,7 @@ def experience(name: str, config: Config = Config()):
 
     data = {
         "company": Prompt.ask("Company"),
+        "url": Prompt.ask("Company URL", default=""),
         "location": Prompt.ask("Location", default="Paris"),
         "start": Prompt.ask("Start Date (YYYY-MM)"),
         "end": Prompt.ask("End Date (YYYY-MM)"),

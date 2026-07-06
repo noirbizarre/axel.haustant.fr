@@ -1,5 +1,6 @@
 ---
 company: Parnasse (Orange)
+url: https://www.orange.com
 location: Lyon / Paris
 start: 2009-01
 end: 2010-07

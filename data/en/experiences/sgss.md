@@ -1,5 +1,6 @@
 ---
 company: Société Générale Security Services
+url: https://www.securities-services.societegenerale.com
 location: La Défense
 role: J2EE Consultant
 start: 2011-05

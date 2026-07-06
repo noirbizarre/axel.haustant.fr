@@ -47,6 +47,7 @@ class WorkEntry(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     name: str | None = None
+    url: HttpUrl | None = None
     position: str | None = None
     location: str | None = None
     startDate: date | None = None
@@ -64,6 +65,7 @@ class WorkEntry(BaseModel):
             highlights = []
         return cls(
             name=exp.company,
+            url=exp.url,
             position=exp.role,
             location=exp.location,
             startDate=exp.start,

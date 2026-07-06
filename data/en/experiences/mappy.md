@@ -1,5 +1,6 @@
 ---
 company: Mappy
+url: https://www.mappy.com
 start: 2011-07
 end: 2013-08
 role: Techlead / GeoData scientist

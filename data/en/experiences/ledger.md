@@ -1,5 +1,6 @@
 ---
 company: Ledger
+url: https://www.ledger.com
 location: Paris
 start: 2020-04
 end:
